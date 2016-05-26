@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="visax" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="visax" version="1.1">
+    <object class="visaRateSource" table="visa_rate_sources" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="key" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="url" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="login" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="password" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="interval" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="snippet" dbtype="int" precision="10" phptype="integer" attributes="unsigned" />
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0" attributes="unsigned" />
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false" />
+        </index>
+        <index alias="key" name="key" primary="false" unique="false" type="BTREE">
+            <column key="key" length="" collation="A" null="false" />
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false" />
+        </index>
+        <aggregate alias="Snippet" class="modScript" local="snippet" foreign="id" cardinality="one" owner="foreign" />
+        <composite alias="Rates" class="visaRate" local="id" foreign="source" cardinality="many" owner="local" />
+    </object>
+    <object class="visaRate" table="visa_rates" extends="xPDOSimpleObject">
+        <field key="from" dbtype="int" precision="10" phptype="integer" attributes="unsigned" />
+        <field key="to" dbtype="int" precision="10" phptype="integer" attributes="unsigned" />
+        <field key="rate" dbtype="float" precision="10" phptype="float" attributes="unsigned" />
+        <field key="updatedon" dbtype="datetime" phptype="datetime" null="false" attributes="ON UPDATE CURRENT_datetime" />
+        <field key="source" dbtype="int" precision="10" phptype="integer" null="true" attributes="unsigned" />
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0" attributes="unsigned" />
+        <index alias="rel" name="rel" primary="false" unique="false" type="BTREE">
+            <column key="from" length="" collation="A" null="false" />
+            <column key="to" length="" collation="A" null="false" />
+        </index>
+        <index alias="source" name="source" primary="false" unique="false" type="BTREE">
+            <column key="source" length="" collation="A" null="false" />
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false" />
+        </index>
+        <aggregate alias="From" class="visaCurrency" local="from" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="To" class="visaCurrency" local="to" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="Source" class="visaRateSource" local="source" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+    <object class="visaCurrXCoun" table="visa_curr_x_coun" extends="xPDOObject">
+        <field key="country" dbtype="int" precision="10" phptype="integer" attributes="unsigned" />
+        <field key="currency" dbtype="int" precision="10" phptype="integer" attributes="unsigned" />
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true">
+            <column key="country" length="" collation="A" null="false" />
+            <column key="currency" length="" collation="A" null="false" />
+        </index>
+        <aggregate alias="Country" class="visaCountry" local="country" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="Currency" class="visaCurrency" local="currency" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+    <object class="visaCurrency" table="visa_currencies" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="key" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="sign" dbtype="varchar" precision="3" phptype="string" null="false" />
+        <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+            <column key="name" length="" collation="A" null="false" />
+        </index>
+        <index alias="key" name="key" primary="false" unique="true" type="BTREE">
+            <column key="key" length="" collation="A" null="false" />
+        </index>
+        <index alias="sign" name="sign" primary="false" unique="true" type="BTREE">
+            <column key="sign" length="" collation="A" null="false" />
+        </index>
+        <composite alias="RateFrom" class="visaRate" local="id" foreign="from" cardinality="many" owner="local" />
+        <composite alias="RateTo" class="visaRate" local="id" foreign="to" cardinality="many" owner="local" />
+        <composite alias="Session" class="visaSession" local="id" foreign="currency" cardinality="many" owner="local" />
+        <composite alias="Countries" class="visaCurrXCoun" local="id" foreign="currency" cardinality="many" owner="local" />
+    </object>
+    <object class="visaCountry" table="visa_countries" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="key" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="sign" dbtype="varchar" precision="3" phptype="string" null="false" />
+        <field key="rank" dbtype="int" precision="10" phptype="integer" default="0" />
+        <field key="public" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0" attributes="unsigned" />
+        <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+            <column key="name" length="" collation="A" null="false" />
+        </index>
+        <index alias="key" name="key" primary="false" unique="true" type="BTREE">
+            <column key="key" length="" collation="A" null="false" />
+        </index>
+        <index alias="sign" name="sign" primary="false" unique="true" type="BTREE">
+            <column key="sign" length="" collation="A" null="false" />
+        </index>
+        <composite alias="Session" class="visaSession" local="id" foreign="country" cardinality="many" owner="local" />
+        <composite alias="Currencies" class="visaCurrXCoun" local="id" foreign="country" cardinality="many" owner="local" />
+    </object>
+    <object class="visaSession" table="visa_sessions" extends="xPDOSimpleObject">
+        <field key="currency" dbtype="int" precision="10" phptype="integer" default="0" attributes="unsigned" />
+        <field key="country" dbtype="int" precision="10" phptype="integer" default="0" attributes="unsigned" />
+        <field key="phone" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="email" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" />
+        <field key="editedon" dbtype="datetime" phptype="datetime" />
+        <field key="url_hash" dbtype="varchar" precision="32" phptype="string" null="false" default="" />
+        <field key="state" dbtype="varchar" precision="20" phptype="string" null="false" default="filling" />
+        <index alias="url_hash" name="url_hash" primary="false" unique="true" type="BTREE">
+            <column key="url_hash" length="32" collation="A" null="false" />
+        </index>
+        <index alias="email" name="email" primary="false" unique="false" type="BTREE">
+            <column key="email" length="" collation="A" null="false" />
+        </index>
+        <index alias="state" name="state" primary="false" unique="false" type="BTREE">
+            <column key="state" length="" collation="A" null="false" />
+        </index>
+        <aggregate alias="Country" class="visaCountry" local="country" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="Currency" class="visaCurrency" local="currency" foreign="id" cardinality="one" owner="foreign" />
+        <composite alias="Person" class="visaPerson" local="id" foreign="session" cardinality="many" owner="local" />
+    </object>
+    <object class="visaPerson" table="visa_persons" extends="xPDOSimpleObject">
+        <field key="session" dbtype="int" precision="10" phptype="integer" default="0" attributes="unsigned" />
+        <field key="firstname" dbtype="varchar" precision="100" phptype="string" null="false" />
+        <field key="sirname" dbtype="varchar" precision="100" phptype="string" null="false" />
+        <field key="patronymic" dbtype="varchar" precision="100" phptype="string" null="false" />
+        <field key="birth_date" dbtype="datetime" phptype="datetime" />
+        <field key="phone" dbtype="varchar" precision="20" phptype="string" null="false" />
+        <field key="desired_time" dbtype="datetime" phptype="datetime" />
+        <field key="mother_fio" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="mother_address" dbtype="mediumtext" phptype="string" null="false" />
+        <field key="mother_phone" dbtype="varchar" precision="20" phptype="string" null="false" />
+        <field key="father_fio" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="father_address" dbtype="mediumtext" phptype="string" null="false" />
+        <field key="father_phone" dbtype="varchar" precision="20" phptype="string" null="false" />
+        <field key="trip_target" dbtype="varchar" precision="100" phptype="string" null="false" />
+        <field key="visa_type" dbtype="varchar" precision="100" phptype="string" null="false" />
+        <field key="prev_surnames" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="marital_status" dbtype="varchar" precision="20" phptype="string" null="false" />
+        <field key="registration_region" dbtype="varchar" precision="100" phptype="string" null="false" />
+        <field key="registration_address" dbtype="mediumtext" phptype="string" null="false" />
+        <field key="residential_address" dbtype="mediumtext" phptype="string" null="false" />
+        <field key="employment" dbtype="varchar" precision="20" phptype="string" null="false" />
+        <field key="empl_function" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="empl_address" dbtype="mediumtext" phptype="string" null="false" />
+        <field key="empl_phone" dbtype="varchar" precision="20" phptype="string" null="false" />
+        <field key="last_visa" dbtype="tinyint" precision="1" phptype="boolean" default="0" attributes="unsigned" />
+        <field key="last_visa_scan" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="passport_scan" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="price" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <index alias="firstname" name="firstname" primary="false" unique="false" type="BTREE">
+            <column key="firstname" length="" collation="A" null="false" />
+        </index>
+        <index alias="sirname" name="sirname" primary="false" unique="false" type="BTREE">
+            <column key="sirname" length="" collation="A" null="false" />
+        </index>
+        <index alias="session" name="session" primary="false" unique="false" type="BTREE">
+            <column key="session" length="" collation="A" null="false" />
+        </index>
+        <aggregate alias="Session" class="visaSession" local="session" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+</model>

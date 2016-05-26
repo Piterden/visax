@@ -1,0 +1,18 @@
+.visax-resource-body {
+padding: 10px 0 10px 20px;
+}
+
+
+.visax-grid .visax-unpublished,
+.visax-grid .visax-unpublished span,
+.visax-grid .visax-unpublished a {
+color: gray;
+}
+.x-grid3-body .x-grid3-td-checker {
+background-image: none !important;
+}
+
+.visax-deleted, .visax-deleted span, .visax-deleted a,
+.visax-grid .visax-deleted, .visax-grid .visax-deleted span, .visax-grid .visax-deleted a {
+color: red !important;
+}

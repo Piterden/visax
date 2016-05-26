@@ -1,0 +1,1438 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"padd",
+				"paddingBottom	Style CSS"
+			],
+			[
+				"bottom",
+				"bottomLabel"
+			],
+			[
+				"hei",
+				"height"
+			],
+			[
+				"text",
+				"textarea"
+			],
+			[
+				"cl",
+				"class"
+			],
+			[
+				"_S",
+				"_SESSION"
+			],
+			[
+				"_",
+				"_REQUEST"
+			],
+			[
+				"getPro",
+				"getProperties"
+			],
+			[
+				"hid",
+				"hidden"
+			],
+			[
+				"con",
+				"container"
+			],
+			[
+				"ce",
+				"center"
+			],
+			[
+				"space",
+				"spacer"
+			],
+			[
+				"vie",
+				"view"
+			],
+			[
+				"label",
+				"labelPosition"
+			],
+			[
+				"but",
+				"butWidth"
+			],
+			[
+				"email",
+				"emailSubject"
+			],
+			[
+				"em",
+				"emailToUserTpl"
+			],
+			[
+				"emailToUs",
+				"emailToUserPersonTpl"
+			],
+			[
+				"visa",
+				"visax"
+			],
+			[
+				"pers",
+				"persons"
+			],
+			[
+				"visax_",
+				"visax_core_path"
+			],
+			[
+				"cont",
+				"container	(webix_debug.js)"
+			],
+			[
+				"per",
+				"persons"
+			],
+			[
+				"fo",
+				"foreach	foreach …"
+			],
+			[
+				"sen",
+				"sendMailToUser	(create.class.php)"
+			],
+			[
+				"li",
+				"list"
+			],
+			[
+				"str",
+				"string	(create.class.php)"
+			],
+			[
+				"show",
+				"show_modal"
+			],
+			[
+				"Ste",
+				"Step1"
+			],
+			[
+				"get",
+				"getMonth	(webix_debug.js)"
+			],
+			[
+				"clcik",
+				"click"
+			],
+			[
+				"loadS",
+				"load_session"
+			],
+			[
+				"se",
+				"sessions"
+			],
+			[
+				"star",
+				"startStep"
+			],
+			[
+				"session",
+				"sessions"
+			],
+			[
+				"help",
+				"helpers_data	(visax.data.js)"
+			],
+			[
+				"sto",
+				"storage"
+			],
+			[
+				"multi",
+				"multilist"
+			],
+			[
+				"app",
+				"appendChild"
+			],
+			[
+				"addB",
+				"addButton"
+			],
+			[
+				"inne",
+				"innerHTML	(webix_debug.js)"
+			],
+			[
+				"appendCh",
+				"appendChild(aChild)	Node"
+			],
+			[
+				"root",
+				"rootNode"
+			],
+			[
+				"roo",
+				"rootNode"
+			],
+			[
+				"rel",
+				"relative"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"updateP",
+				"updatePersons"
+			],
+			[
+				"cla",
+				"classname"
+			],
+			[
+				"cosole",
+				"console.log"
+			],
+			[
+				"templ",
+				"templateEnd	(webix_debug.js)"
+			],
+			[
+				"temp",
+				"template"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"input",
+				"inputWidth	(webix_debug.js)"
+			],
+			[
+				"remo",
+				"removeButton"
+			],
+			[
+				"cr",
+				"createElement"
+			],
+			[
+				"va",
+				"values"
+			],
+			[
+				"set",
+				"setValue"
+			],
+			[
+				"prev",
+				"prevSurStr"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"val",
+				"values"
+			],
+			[
+				"all",
+				"allValues"
+			],
+			[
+				"auto",
+				"autoheight	(webix_debug.js)"
+			],
+			[
+				"split",
+				"split(separator)	String"
+			],
+			[
+				"labe",
+				"labelNode"
+			],
+			[
+				"inse",
+				"insertBefore	.insertBefore()"
+			],
+			[
+				"phone",
+				"phonefield"
+			],
+			[
+				"Va",
+				"VanillaMask"
+			],
+			[
+				"def",
+				"defaults"
+			],
+			[
+				"pho",
+				"phoneMasked"
+			],
+			[
+				"vali",
+				"validator"
+			],
+			[
+				"opt",
+				"optArr"
+			],
+			[
+				"append",
+				"appendChild(aChild)	Node"
+			],
+			[
+				"getE",
+				"getElementById(id)	Element"
+			],
+			[
+				"chil",
+				"childNodes"
+			],
+			[
+				"pre",
+				"prevSurStr"
+			],
+			[
+				"class",
+				"classname"
+			],
+			[
+				"cre",
+				"create"
+			],
+			[
+				"prevS",
+				"prevSurList"
+			],
+			[
+				"tex",
+				"text"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"getR",
+				"getRange	(webix_debug.js)"
+			],
+			[
+				"list",
+				"listWrapper"
+			],
+			[
+				"clear",
+				"clearAll	(webix_debug.js)"
+			],
+			[
+				"stri",
+				"string	(webix_debug.js)"
+			],
+			[
+				"push",
+				"push(element1)	Array"
+			],
+			[
+				"la",
+				"label"
+			],
+			[
+				"inner",
+				"innerHTML"
+			],
+			[
+				"first",
+				"firstChild	(webix_debug.js)"
+			],
+			[
+				"he",
+				"header"
+			],
+			[
+				"check",
+				"checksuggest"
+			],
+			[
+				"animte",
+				"animate	.animate()"
+			],
+			[
+				"tag",
+				"targetColumn"
+			],
+			[
+				"tar",
+				"targetRow"
+			],
+			[
+				"target",
+				"targetColumn"
+			],
+			[
+				"only",
+				"onlyFirst"
+			],
+			[
+				"url",
+				"url_hash	(visax.mysql.schema.xml)"
+			],
+			[
+				"edi",
+				"editable"
+			],
+			[
+				"c",
+				"content"
+			],
+			[
+				"r",
+				"response"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"removeD",
+				"removeDropZoneArea"
+			],
+			[
+				"up",
+				"upload	XMLHttpRequest"
+			],
+			[
+				"type",
+				"typeof"
+			],
+			[
+				"pa",
+				"patronymic"
+			],
+			[
+				"save",
+				"saveHandlerId"
+			],
+			[
+				"sess",
+				"session_id"
+			],
+			[
+				"res",
+				"results"
+			],
+			[
+				"dit",
+				"dirtyVals"
+			],
+			[
+				"getD",
+				"getDirtyValues"
+			],
+			[
+				"inv",
+				"invalid_form"
+			],
+			[
+				"noen",
+				"none"
+			],
+			[
+				"sele",
+				"selectMoreRecent"
+			],
+			[
+				"o",
+				"object"
+			],
+			[
+				"conf",
+				"config"
+			],
+			[
+				"unde",
+				"undefined"
+			],
+			[
+				"defa",
+				"defaults	(webix_debug.js)"
+			],
+			[
+				"Data",
+				"DataLoader	(webix_debug.js)"
+			],
+			[
+				"Eve",
+				"EventSystem	(webix_debug.js)"
+			],
+			[
+				"ref",
+				"refreshCursor"
+			],
+			[
+				"getA",
+				"getAjaxUrl"
+			],
+			[
+				"upd",
+				"updateItem"
+			],
+			[
+				"getC",
+				"getCursor	(webix_debug.js)"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"ad",
+				"addBind"
+			],
+			[
+				"par",
+				"parse"
+			],
+			[
+				"tis",
+				"this"
+			],
+			[
+				"resiz",
+				"resize_2"
+			],
+			[
+				"eve",
+				"event"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "visax.form.js",
+			"settings":
+			{
+				"buffer_size": 47443,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!doctype html>\n<html lang=\"en\">\n\n<head>\n    <title>[[*pagetitle]] - [[++site_name]]</title>\n    <base href=\"[[!++site_url]]\" />\n    <meta charset=\"[[++modx_charset]]\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\" />\n    <!-- index.html -->\n    <!-- CSS -->\n    <link rel=\"stylesheet\" href=\"[[++assets_url]]components/cinemateka/css/bootstrap.min.css\">\n</head>\n\n<body>\n    <!-- navigation bar -->\n    <nav class=\"navbar navbar-default\">\n        <div class=\"container-fluid\">\n            <a class=\"navbar-brand\"><i class=\"glyphicon glyphicon-bullhorn\"></i> Vue Events Bulletin Board</a>\n        </div>\n    </nav>\n    <!-- main body of our application -->\n    <div class=\"container\" id=\"events\">\n        <!-- add an event form -->\n        <div class=\"col-sm-6\">\n            <div class=\"panel panel-default\">\n                <div class=\"panel-heading\">\n                    <h3>Add an Event</h3>\n                </div>\n                <div class=\"panel-body\">\n                    <div class=\"panel-heading\">\n                        <h3>Add an Event</h3>\n                    </div>\n                    <div class=\"panel-body\">\n                        <div class=\"form-group\">\n                            <input class=\"form-control\" placeholder=\"Event Name\" v-model=\"event.name\">\n                        </div>\n                        <div class=\"form-group\">\n                            <textarea class=\"form-control\" placeholder=\"Event Description\" v-model=\"event.description\"></textarea>\n                        </div>\n                        <div class=\"form-group\">\n                            <input type=\"date\" class=\"form-control\" placeholder=\"Date\" v-model=\"event.date\">\n                        </div>\n                        <button class=\"btn btn-primary\" v-on=\"click: addEvent\">Submit</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- show the events -->\n        <div class=\"col-sm-6\">\n            <div class=\"list-group\">\n            </div>\n        </div>\n    </div>\n</body>\n</html>`\n<!-- JS -->\n<script type=\"text/javascript\" src=\"[[++assets_url]]components/cinemateka/js/web/vue.js\"></script>\n<script type=\"text/javascript\" src=\"[[++assets_url]]components/cinemateka/js/web/vue-resource.min.js\"></script>\n<script>\n// app.js\n\n\n</script>\n\n",
+			"settings":
+			{
+				"buffer_size": 2406,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/den/projects/viza_prod/assets/web.connector.php",
+			"settings":
+			{
+				"buffer_size": 1833,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/den/projects/viza_prod/core/processors/web/session/create.class.php",
+			"settings":
+			{
+				"buffer_size": 4465,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/den/projects/viza_prod/core/controllers/home.class.php",
+			"settings":
+			{
+				"buffer_size": 2133,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/den/projects/viza_prod/core/model/visax/visax.class.php",
+			"settings":
+			{
+				"buffer_size": 14034,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/den/projects/viza_prod/assets/css/visax.css",
+			"settings":
+			{
+				"buffer_size": 8323,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "mer",
+		"selected_items":
+		[
+			[
+				"mer",
+				"Emmet: Merge Lines"
+			],
+			[
+				"me",
+				"Emmet: Merge Lines"
+			],
+			[
+				"linter",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"time",
+				"Snippet: setTimeout"
+			],
+			[
+				"select",
+				"Rot13 Selection"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"vue",
+				"Set Syntax: Vue Component"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"json",
+				"Set Syntax: JSON (Javascript Next)"
+			],
+			[
+				"next",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"ember",
+				"Set Syntax: EmberScript"
+			],
+			[
+				"m",
+				"Emmet: Merge Lines"
+			],
+			[
+				"TOLwer",
+				"Convert Case: Lower Case"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"ssphp",
+				"Set Syntax: PHP"
+			],
+			[
+				"jso",
+				"Set Syntax: JSON"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"lint",
+				"Package Control: Install Package"
+			],
+			[
+				"php",
+				"phpfmt: format now"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"ssph",
+				"Set Syntax: PHP"
+			],
+			[
+				"pro",
+				"Project: Edit Project"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"jva",
+				"Set Syntax: JavaScript"
+			]
+		],
+		"width": 548.0
+	},
+	"console":
+	{
+		"height": 349.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/den/projects/viza_prod",
+		"/home/den/projects/viza_prod/assets",
+		"/home/den/projects/viza_prod/assets/css",
+		"/home/den/projects/viza_prod/assets/images",
+		"/home/den/projects/viza_prod/assets/js",
+		"/home/den/projects/viza_prod/core",
+		"/home/den/projects/viza_prod/core/controllers",
+		"/home/den/projects/viza_prod/core/docs",
+		"/home/den/projects/viza_prod/core/elements",
+		"/home/den/projects/viza_prod/core/elements/chunks",
+		"/home/den/projects/viza_prod/core/elements/plugins",
+		"/home/den/projects/viza_prod/core/lexicon",
+		"/home/den/projects/viza_prod/core/lexicon/ru",
+		"/home/den/projects/viza_prod/core/model",
+		"/home/den/projects/viza_prod/core/model/visax",
+		"/home/den/projects/viza_prod/core/templates"
+	],
+	"file_history":
+	[
+		"/home/den/projects/viza_prod/core/processors/web/country/getlist.class.php",
+		"/home/den/projects/viza_prod/assets/web.connector.php",
+		"/home/den/projects/viza_prod/core/elements/plugins/visahashhandler.plugin.php",
+		"/home/den/projects/viza_prod/core/index.class.php",
+		"/home/den/projects/viza_prod/core/controllers/home.class.php",
+		"/home/den/projects/viza_prod/core/lexicon/en/default.inc.php",
+		"/home/den/projects/viza_prod/assets/sftp-config.json",
+		"/home/den/projects/viza_prod/core/sftp-config.json",
+		"/home/den/projects/visa_master/visa_dev_assets/sftp-config.json",
+		"/home/den/projects/visa_master/visa_dev_visax/elements/snippets/visapage.snippet.php",
+		"/home/den/projects/visa_master/visa_dev_visax/model/visax/visax.class.php",
+		"/home/den/projects/visa_master/visa_dev_assets/js/visax.form.js",
+		"/home/den/projects/visa_master/visa_dev_assets/css/visax.css",
+		"/home/den/projects/visa_master/api/sftp-config.json",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/web/person/upload.class.php",
+		"/home/den/projects/visa_master/visa_dev_assets/web.connector.php",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/web/session/create.class.php",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/web/session/get.class.php",
+		"/home/den/projects/visa_master/visa_dev_visax/controllers/home.class.php",
+		"/home/den/projects/modxcms/revolution/core/model/modx/processors/browser/file/upload.class.php",
+		"/home/den/projects/visa_master/visa_dev_assets/js/visax.data.js",
+		"/home/den/projects/visa_master/visa_dev_assets/js/visax.skin.js",
+		"/home/den/projects/visa_master/visa_dev_visax/lexicon/en/default.inc.php",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/web/session/getlist.class.php",
+		"/home/den/projects/visa_master/visa_dev_assets/js/webix_debug.js",
+		"/home/den/projects/visa_master/visa_dev_assets/js/vanillamask.js",
+		"/home/den/projects/visa_master/visa_dev_visax/elements/plugins/visahashhandler.plugin.php",
+		"/home/den/projects/visa_master/visa_dev_visax/elements/chunks/visa_layout.chunk.html",
+		"/home/den/projects/visa_master/visa_dev_visax/elements/chunks/email_user.chunk.html",
+		"/home/den/projects/visa_master/visa_dev_visax/elements/chunks/email_user_person.chunk.html",
+		"/home/den/projects/visa_master/visa_dev_visax/elements/chunks/email_user_separator.chunk.html",
+		"/home/den/projects/VanillaMask/README.md",
+		"/home/den/projects/VanillaMask/src/vanillamask.js",
+		"/home/den/Documents/webixsamples/libs/webix/codebase/webix_debug.js",
+		"/home/den/Documents/webixsamples/common/connector/tools.php",
+		"/home/den/Documents/webixsamples/samples/14_dataprocessor/data/dummy.json",
+		"/home/den/Documents/webixsamples/common/chartdata.js",
+		"/home/den/Documents/webixsamples/common/companies.js",
+		"/etc/nginx/sites-available/sb.local",
+		"/home/den/Documents/webixsamples/common/config.php",
+		"/home/den/.cache/.fr-1s0AYW/server.js",
+		"/home/den/projects/visa_master/visa_dev_assets/css/webix_debug.js",
+		"/home/den/projects/php-console/examples/features/complex_usage_example.php",
+		"/home/den/Documents/sqlbuddy/functions.php",
+		"/home/den/Documents/sqlbuddy/dboverview.php",
+		"/home/den/Documents/sqlbuddy/login.php",
+		"/home/den/Documents/sqlbuddy/config.php",
+		"/home/den/Documents/sqlbuddy/users.php",
+		"/home/den/Documents/sqlbuddy/includes/class/Sql.php",
+		"/home/den/Documents/sqlbuddy/locale/ru_RU.pot",
+		"/home/den/Documents/sqlbuddy/js/core.js",
+		"/home/den/projects/visa_master/visa_dev_visax/lexicon/ru/default.inc.php",
+		"/home/den/projects/visa_master/visa_dev_assets/js/index.html",
+		"/home/den/projects/visa_master/visa_dev_assets/js/readme.txt",
+		"/home/den/projects/visa_master/visa_dev_assets/js/visax.class.js",
+		"/home/den/projects/visa_master/visa_dev_assets/js/widgets/country.grid.js",
+		"/home/den/projects/visa_master/visa_dev_assets/js/widgets/country.windows.js",
+		"/home/den/projects/visa_master/visa_dev_assets/js/widgets/currency.grid.js",
+		"/home/den/projects/visa_master/visa_dev_assets/js/widgets/person.grid.js",
+		"/home/den/projects/visa_master/visa_dev_assets/js/widgets/session.grid.js",
+		"/home/den/projects/visa_master/api/Controllers/Persons.php",
+		"/home/den/projects/vuepr/src/App.vue",
+		"/home/den/projects/vuepr/src/components/Grid.vue",
+		"/home/den/projects/vix/app/templates/manager/resources.hbs",
+		"/home/den/projects/visa_master/visa_dev_visax/model/schema/visax.mysql.schema.xml",
+		"/home/den/projects/visa_master/visa_dev_assets/js/widgets/home.panel.js",
+		"/home/den/projects/modxcms/revolution/core/model/modx/rest/modrestcontroller.class.php",
+		"/home/den/projects/vix/app/models/resource.js",
+		"/home/den/projects/visa_master/api/Controllers/Session.php",
+		"/home/den/projects/visa_master/api/index.php",
+		"/home/den/projects/visa_master/api/Controllers/Country.php",
+		"/home/den/projects/visa_master/api/Controllers/Visa.php",
+		"/home/den/projects/visa_master/api/Controllers/Auth.php",
+		"/home/den/projects/modxcms/revolution/core/model/modx/rest/modrestservice.class.php",
+		"/home/den/projects/modx_x-types",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/core/modx.button.js",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/core/modx.grid.js",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/core/modx.grid.settings.js",
+		"/home/den/projects/modxcms/revolution/manager/assets/ext3/ext-all-debug.js",
+		"/home/den/projects/modxcms/revolution/core/model/modx/processors/source/updatefromgrid.class.php",
+		"/run/user/1000/gvfs/sftp:host=185.5.251.248,port=2223,user=admin/home/admin/web/yowish.yellowmarker.ru/public_html/api/.htaccess",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/web/person/update.class.php",
+		"/run/user/1000/gvfs/sftp:host=185.5.251.248,port=2223,user=admin/home/admin/web/yowish.yellowmarker.ru/public_html/.htaccess",
+		"/home/den/projects/modxcms/revolution/core/model/modx/modmanagercontroller.class.php",
+		"/home/den/projects/modxcms/revolution/core/model/modx/sources/modfilemediasource.class.php",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/element/modx.panel.tv.renders.js",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/element/modx.grid.plugin.event.js",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/workspace/lexicon/lexicon.topic.grid.js",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/resource/modx.panel.resource.schedule.js",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/modx.panel.search.js",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/element/modx.grid.element.properties.js",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/core/modx.window.js",
+		"/home/den/projects/modxcms/revolution/_build/templates/default/sass/components/_secondary-button.scss",
+		"/home/den/projects/modxcms/revolution/manager/assets/modext/widgets/source/modx.grid.source.properties.js",
+		"/home/den/projects/modxcms/revolution/core/model/modx/modprocessor.class.php",
+		"/home/den/projects/visa_master/visa_dev_assets/css/webix.css",
+		"/home/den/projects/visa_master/visa_dev_assets/css/mgr.css",
+		"/home/den/projects/visa_master/visa_dev_assets/js/i18n/ru.js",
+		"/home/den/projects/visa_master/visa_dev_assets/css/webix.js",
+		"/home/den/projects/MODX.today/assets/tpl/sources/index.html",
+		"/home/den/projects/visa_master/visa_dev_assets/js/skin.js",
+		"/home/den/projects/modxcms/revolution/core/model/modx/modlexicon.class.php",
+		"/home/den/projects/modxcms/revolution/setup/includes/modinstalllexicon.class.php",
+		"/home/den/projects/modxcms/revolution/core/model/modx/modx.class.php",
+		"/home/den/projects/modxcms/revolution/core/xpdo/om/xpdoobject.class.php",
+		"/home/den/projects/modxcms/revolution/core/xpdo/xpdo.class.php",
+		"/home/den/projects/modxcms/revolution/core/model/modx/modresource.class.php",
+		"/home/den/projects/modxcms/revolution/core/model/modx/moduser.class.php",
+		"/home/den/remote/phpinfo.php",
+		"/home/den/projects/modxcms/revolution/core/model/modx/hashing/modmd5.class.php",
+		"/home/den/projects/modxcms/revolution/core/model/modx/error/moderrorhandler.class.php",
+		"/home/den/projects/modxcms/revolution/core/model/modx/validation/modvalidator.class.php",
+		"/home/den/projects/modxcms/revolution/core/xpdo/validation/xpdovalidator.class.php",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/web/crud.class.php",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/web/person/get.class.php",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/web/person/getlist.class.php",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/web/country/getlist.class.php",
+		"/home/den/projects/visa_master/visa_dev_assets/js/widgets/rate.grid.js",
+		"/home/den/projects/visa_master/visa_dev_visax/index.class.php",
+		"/home/den/projects/visa_master/visa_dev_assets/connector.php",
+		"/home/den/projects/visa_master/visa_dev_assets/js/misc/combo.js",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/mgr/country/update.class.php",
+		"/home/den/projects/visa_master/visa_dev_assets/js/widgets/ratesource.grid.js",
+		"/home/den/projects/visa_master/visa_dev_assets/js/widgets/session.windows.js",
+		"/home/den/projects/visa_master/visa_dev_assets/js/sections/home.js",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/mgr/country/create.class.php",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/mgr/country/get.class.php",
+		"/home/den/projects/visa_master/visa_dev_visax/processors/mgr/country/getlist.class.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/home/den/projects/viza_prod",
+			"/home/den/projects/visa_master",
+			"/home/den/Documents/sqlbuddy",
+			"/home/den/projects/modxcms/revolution",
+			"/home/den/projects/modxcms/revolution/manager",
+			"/home/den/projects/modxcms/revolution",
+			"/home/den/projects/modxcms/revolution/manager",
+			"/home/den/projects/modxcms/revolution/manager/templates/default/css",
+			"/home/den/projects/modxcms/revolution",
+			"/home/den/projects/visa_master",
+			"/home/den/projects/modxcms/revolution/core/model",
+			"/home/den/projects/modxcms/revolution/",
+			"/home/den/projects/modxcms/revolution/core/model",
+			"/home/den/projects/modxcms/revolution,-*/processors/*",
+			"/home/den/projects/modxcms/revolution,-*processors*",
+			"/home/den/projects/modxcms/revolution",
+			"/home/den/projects/visa_master",
+			"/home/den/projects/modxcms/revolution",
+			"/home/den/projects/visa_master",
+			"/home/den/projects/modxcms/revolution,-*lexicon/*",
+			"/home/den/projects/modxcms/revolution",
+			"/home/den/projects/visa_master",
+			"/home/den/projects/modxcms/revolution,-*min.css",
+			"/home/den/projects/modxcms/revolution",
+			"/home/den/projects/visa_master/visa_dev_visax/processors/mgr/person",
+			"/home/den/projects/visa_master/visa_dev_visax/processors/mgr/session",
+			"/home/den/projects/modxcms/revolution",
+			"/home/den/projects/visa_master",
+			"/home/den/projects/modxcms/revolution",
+			"/home/den/projects/visa_master",
+			"/home/den/projects/visa_dev_assets/components/visax",
+			"/home/den/projects/mirt/etc/templates",
+			"/home/den/projects/mirt",
+			"/home/den/projects/rs_autojack"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"public",
+			"padding",
+			"margin",
+			"\"template\"",
+			"font-f",
+			"673a",
+			"_lang",
+			"error_tvid_invalid",
+			"list",
+			"'",
+			"addDropZoneArea",
+			"last_visa_scan",
+			"'",
+			"butHeight",
+			"butWidth",
+			"-",
+			"key=\"",
+			"[[]]",
+			"key=\"",
+			"emailFromName",
+			"emailFrom",
+			"persons_output",
+			"persRender",
+			"$assets_url",
+			"$modx->getOption('visax_assets_url'",
+			"$modx",
+			"'",
+			"p",
+			"_persons",
+			"userSessionsStore",
+			"sess",
+			"1000001",
+			"{",
+			"datadriver",
+			"registration_region",
+			"webix.html.create",
+			"\"",
+			"=",
+			"\"",
+			"();",
+			"updatePrevSirnamesStr",
+			"'",
+			";",
+			"34px;position",
+			";",
+			"folder:",
+			"folder",
+			"{common.",
+			"common.",
+			"templateStart",
+			"console",
+			"prevSurStr",
+			"console",
+			"updatePrevSirnamesStr",
+			"userSessionsStore",
+			"personsStore",
+			"updatePrevSirnames",
+			", ignoreUpdate",
+			"prevSurList",
+			"updatePrevSirnames",
+			"updateSirnames",
+			"_bind_update_common",
+			"rule",
+			"formStmt",
+			"togglePerson",
+			"visaList",
+			"VanillaMask",
+			"checksuggest",
+			"_",
+			"___",
+			"phone",
+			"updateItems",
+			"\",\n",
+			"Scroll",
+			"$psl.getNode().childNodes[1]",
+			"create",
+			"prevSurnames",
+			"innerHTML",
+			"prevSurnames",
+			"prevSirnames",
+			"recentPerson",
+			"sesSionpersonsStore",
+			"string",
+			"first",
+			"title",
+			"multiselect",
+			"\"$\"",
+			"_methodPush",
+			"update:",
+			"$upd",
+			"scheme",
+			"innerHTML",
+			"multicombo",
+			"template:",
+			"$view",
+			"        \n",
+			":",
+			"console.log",
+			"}",
+			"\"",
+			"rank",
+			"},",
+			"animate: {\n                            direction: \"top\"\n                        },",
+			"You do not have enough permissions to create new users",
+			"У Вас недостаточно прав для создания новых пользователе",
+			"okayClick =",
+			"var",
+			"{",
+			"There was an error receiving ",
+			"resultSet",
+			"result(",
+			"result",
+			"rowCount",
+			"queryResult",
+			"result",
+			"getTextArr",
+			"showUsersMenu",
+			"mysql_error",
+			"this->conn",
+			"rowCount",
+			"isResultSet",
+			"rowCount",
+			"mysql_",
+			"mysql_connect",
+			"mys",
+			"mysql_connect",
+			"@mysql_connect",
+			"mysql_"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": true,
+		"regex": false,
+		"replace_history":
+		[
+			"persons",
+			"mysqli_",
+			"sessionPersonsStore",
+			"userSessionsStore",
+			"заявителя",
+			"connectorUrl",
+			"$objectType = 'visax.country';",
+			"visaCountry';",
+			"visaCountry",
+			"'x-grid-panel'",
+			"x-grid-panel",
+			"visax",
+			"Sessions",
+			"Session",
+			"Sessions",
+			"Session",
+			"Person",
+			"person",
+			"Session",
+			"Currency",
+			"persons_count",
+			"Country",
+			"country",
+			"visax",
+			"countries",
+			"Currencies",
+			"Countries",
+			"Currency",
+			"Country",
+			"Session",
+			"Ratesource",
+			"Rate",
+			"Person",
+			"person",
+			"persons",
+			"visa_persons",
+			"visaPerson",
+			"Visa",
+			"visa"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "visax.form.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 47443,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								35441,
+								35441
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6894.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2406,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2394,
+								2394
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Vuejs Complete Package/vue.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 577.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/den/projects/viza_prod/assets/web.connector.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1833,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/den/projects/viza_prod/core/processors/web/session/create.class.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4465,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4284,
+								4284
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 816.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/den/projects/viza_prod/core/controllers/home.class.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2133,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 48.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/den/projects/viza_prod/core/model/visax/visax.class.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14034,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1930,
+								1930
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/den/projects/viza_prod/assets/css/visax.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8323,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8320,
+								8320
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4970.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 32.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 336.0
+	},
+	"output.find_results":
+	{
+		"height": 106.0
+	},
+	"output.sftp":
+	{
+		"height": 106.0
+	},
+	"pinned_build_system": "",
+	"project": "visa.prod\\.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/projects/cinemateka.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 292.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
