@@ -405,7 +405,7 @@ button.btn-primary:hover {
     position: absolute;
     left: -10px;
     top: calc(50% - 9px);
-    background: #fff;
+    background: transparent;
     z-index: 1;
     width: 0;
     height: 0;
@@ -458,4 +458,7 @@ button.btn-primary:hover {
 .top-fixed {
     position: fixed;
     top: 0;
+}
+.image-preview img {
+    width: 100%;
 }

@@ -16,16 +16,17 @@ var // @vars
     /**
      * Capitalize word
      * @param  {string} word    Word
-     * @param  {bool} onlyFirst Return only first letter with dot
+     * @param  {bool} onlyFirstLetter Return only first letter with dot
      * @return {string}         Capitalized
      */
-    _C = function(word, onlyFirst) {
+    _C = function(word, onlyFirstLetter) {
         if (!word) return '';
         word = word.toLowerCase();
-        return (!onlyFirst) ? word[0].toUpperCase() + word.slice(1) + ' ' : word[0].toUpperCase() + '. ';
+        return (!onlyFirstLetter) ? word[0].toUpperCase() + word.slice(1) + ' ' : word[0].toUpperCase() + '. ';
     },
 
     /**
+     * Запускается со стороны бэкенда после успешного обновления заявителя
      * After person updated
      * @param  {number} response
      * @return {void}
@@ -34,7 +35,12 @@ var // @vars
         $$('visaForm').setDirty(!data.success);
     },
 
-    updatePersons = function() {
+    /**
+     * Сохранение полей заявителя в базе
+     * Обновление таблицы в 3 шаге
+     * @return {[type]} [description]
+     */
+    updatePerson = function() {
         var $formStmt = $$('visaForm'),
             allValues = $formStmt.getValues(),
             id = allValues.id,
@@ -46,6 +52,15 @@ var // @vars
     },
 
     /**
+     * Обновление цены
+     * @return {[type]} [description]
+     */
+    updateCost = function() {
+
+    },
+
+    /**
+     * Инициализация 2 шага - главная форма
      * Initialize step 2 - main order form
      * @param  {number} id of current session
      * @return {void}
@@ -54,7 +69,7 @@ var // @vars
         var $modal = $$('sessions_list'),
             $personsList = $$('visaList'),
             $singlePersonForm = $$('visaForm'),
-            recentPersIndex = selectRecentPerson(id),
+            recentPersIndex = selectRecentPersonIndex(id),
             recentPersId = $$personsStore.getIdByIndex(recentPersIndex),
             persons = $$userSessionsStore.getItem(id).persons,
             $prevSurList = $$('prevSurList'),
@@ -72,23 +87,23 @@ var // @vars
 
         if ($modal !== undefined) $modal.close();
 
-        // Binding stores to each other
+        // Связывание хранилищ, форм и списков
         $personsList.sync($$personsStore);
         $$personsStore.addBind($personsList);
         $singlePersonForm.bind($personsList);
 
-        $personsList.select(recentPersIndex);
+        // Выбор актуального заявителя
+        $personsList.select(recentPersId);
         $$userSessionsStore.setCursor(id);
         $$personsStore.refreshCursor();
         $$userSessionsStore.refreshCursor();
 
-        // Update multifield
+        // Обновление списка фамилий
         $prevSurList.updatePrevSirnamesList(recentPersId);
 
         /**
+         * Переключение заявителей
          * Persons list item click handler (side bar step 2)
-         * @param  {number} newId
-         * @return {number} id of event
          */
         $personsList.attachEvent('onItemClick', function(newId) {
             var oldId = this.getSelectedId(),
@@ -102,10 +117,16 @@ var // @vars
             $prevSurList.updatePrevSirnamesList(newId);
         });
 
+        /**
+         * Смена селектов
+         */
         $personsList.attachEvent('onSelectChange', function(id) {
             $prevSurList.updatePrevSirnamesList(id);
         });
 
+        /**
+         * После ввода фамилии
+         */
         $prevSurList.attachEvent("onAfterEditStop", function(state, editor) {
             if (state.value != state.old) {
                 this.updatePrevSirnamesStr();
@@ -113,6 +134,7 @@ var // @vars
         });
 
         /**
+         * Прекращение ввода текста
          * Handling 'onkeyup' native DOM event
          * @param  (HTML_Node, event, handler, this)
          * @return event id
@@ -122,7 +144,7 @@ var // @vars
                 clearTimeout(timeoutID);
 
                 // Timeout before live save is run
-                timeoutID = webix.delay(updatePersons, $singlePersonForm, [], 400);
+                timeoutID = webix.delay(updatePerson, $singlePersonForm, [], 400);
             }
         }, { master: $$('visaForm') });
 
@@ -183,9 +205,7 @@ var // @vars
     },
 
     /**
-     * [new_session description]
-     * @param  {[type]} data [description]
-     * @return {[type]}      [description]
+     * Вызывается из бэкенда при создании новой сессии
      */
     new_session = function(data) {
         var session = data.results,
@@ -204,11 +224,9 @@ var // @vars
     },
 
     /**
-     * [load_session description]
-     * @param  {[type]} id [description]
-     * @return {[type]}    [description]
+     * Загрузка новой сессии по id
      */
-    load_session = function(id) {
+    loadSession = function(id) {
         var session = $$userSessionsStore.getItem(id),
             persons = session.persons;
         mainWrapper.hideProgress();
@@ -224,9 +242,8 @@ var // @vars
     },
 
     /**
-     * [show_modal description]
-     * @param  {[type]} data [description]
-     * @return {[type]}      [description]
+     * Вызывается из бэкенда при существовании подходящих сессий
+     * Показывает всплывающее окно со списком сессий
      */
     show_modal = function(data) {
         if (typeof data == 'string') data = JSON.parse(data);
@@ -257,7 +274,6 @@ var // @vars
                 rows: [{
                     view: "treetable",
                     select: "row",
-                    // editable: true,
                     autowidth: true,
                     scheme: {
                         $init: function(obj) {
@@ -298,7 +314,7 @@ var // @vars
                                             type: "icon",
                                             delay: 3000
                                         });
-                                        load_session(id);
+                                        loadSession(id);
                                     }
                                 }
                             });
@@ -354,8 +370,8 @@ var // @vars
      * @param  {number} s_id session id
      * @return {number}      person id
      */
-    selectRecentPerson = function(s_id) {
-        return 1;
+    selectRecentPersonIndex = function(sessionId) {
+        return 0;
     },
 
     getPersonsLimit = function() {
@@ -374,27 +390,27 @@ var // @vars
      */
     addDropZoneArea = function(name, target) {
         var $personsList = $$(target),
-            $uploadAPI = $$('uploadAPI'),
+            $uploadLastVisaAPI = $$('uploadLastVisaAPI'),
             XY = webix.html.offset($personsList.$view);
 
         $personsList.$view.id = 'uploadWrap';
 
-        var dropZoneArea = webix.ui({
+        var dropZoneArea = new webix.ui({
             container: "uploadWrap",
             view: "button",
-            id: "dropZoneArea",
+            id: "dropZoneArea_" + name,
             label: _('drop_zone'),
             type: "iconTop",
             icon: "upload",
             css: "dropzone",
             width: XY.width,
             height: XY.height - 1,
-            click: "$$('uploadAPI').fileDialog();",
+            click: "$$('uploadLastVisaAPI').fileDialog();",
             fullScreen: false
         });
 
         dropZoneArea.define('css', 'dropzone op1');
-        $uploadAPI.addDropZone(dropZoneArea.$view);
+        $uploadLastVisaAPI.addDropZone(dropZoneArea.$view);
 
         winResizeEv = webix.event(window, 'resize', function(e, t) {
             var XY = webix.html.offset($personsList.$view);
@@ -403,31 +419,47 @@ var // @vars
             dropZoneArea.resize(true);
         });
 
-        $uploadAPI.attachEvent("onBeforeFileAdd", function(item) {
-            var name = item.name.toLowerCase(),
-                type = item.type.toLowerCase();
+        $uploadLastVisaAPI.attachEvent("onBeforeFileAdd", function(item) {
+            var type = item.type.toLowerCase();
             if (type != "jpg" && type != "jpeg" && type != "png" && type != "gif") {
                 webix.message("Only PNG, JPG, JPEG and GIF images are supported");
                 return false;
             }
-            $uploadAPI.define('formData', {
-                source: 2,
-                path: "visascans/"
-            });
+            switch (name) {
+                case 'last_visa_scan':
+                    $uploadLastVisaAPI.define('formData', {
+                        source: 2,
+                        path: "visascans/"
+                    });
+                    break;
+                case 'passport_scan':
+                    $uploadLastVisaAPI.define('formData', {
+                        source: 2,
+                        path: "passportscans/"
+                    });
+                    break;
+            }
         });
 
-        var onUpCompl = $uploadAPI.attachEvent("onUploadComplete", function(response) {
-            console.log(response);
-            removeDropZoneArea();
+        var onUpCompl = $uploadLastVisaAPI.attachEvent("onUploadComplete", function(response) {
+            if (response.success) {
+                var $view = $$(name + '_view');
+                $$(name).setValue(response.object.url);
+                updatePerson();
+                $view.define('data', response.object);
+                $view.show();
+                removeDropZoneArea(name);
+            }
         });
 
     },
 
-    removeDropZoneArea = function() {
-        webix.html.removeCss($$("dropZoneArea").getNode(), "op1");
+    removeDropZoneArea = function(name) {
+        if (!$$('dropZoneArea_' + name)) return;
+        webix.html.removeCss($$('dropZoneArea_' + name).getNode(), "op1");
         webix.delay(function() {
-            if ($$('dropZoneArea') !== undefined) {
-                $$('dropZoneArea').destructor();
+            if ($$('dropZoneArea_' + name) !== undefined) {
+                $$('dropZoneArea_' + name).destructor();
             }
             webix.detachEvent(winResizeEv);
         }, webix, [], 500);
@@ -444,9 +476,10 @@ var // @vars
         return ($$personsStore.getItem(id).birth_date - new Date()) / 1000 / 60 / 60 / 24 / 365;
     },
 
-    calculateCost = function() {
+    calculateCost = function(personId) {
+        personId = personId || $$('visaForm').getValues().id;
         var cost = 540,
-            age = getPersonAge();
+            age = getPersonAge(personId);
 
         // Age rules
         if (age <= 17) cost += 500;
@@ -590,7 +623,7 @@ webix.protoUI({
         var $prevSurList = $$('prevSurList'),
             str = $$personsStore.getItem(id).prev_surnames;
 
-        if (str === '') return;
+        if (!str || str === '') return;
 
         var arr = str.split(','),
             result = [];
@@ -604,7 +637,7 @@ webix.protoUI({
         var values = this.getValues(),
             $strField = $$('prevSurStr');
         $strField.setValue(values.join(','));
-        updatePersons();
+        updatePerson();
     },
     on_click: {
         "button_add": function() {
@@ -667,7 +700,7 @@ webix.ready(function() {
      */
     webix.ui({
         view: "uploader",
-        id: "uploadAPI",
+        id: "uploadLastVisaAPI",
         apiOnly: true,
         multiple: false,
         accept: "image/png, image/gif, image/jpg",
@@ -932,17 +965,18 @@ webix.ready(function() {
                     autoheight: true,
                     elementsConfig: {
                         labelPosition: "top",
-                        on: {
-                            "onChange": function(newv, oldv) {
-                                var $singlePersonForm = this.getFormView();
-                                if ($singlePersonForm.isDirty()) {
-                                    clearTimeout(timeoutID);
-                                    // Timeout before live save is run
-                                    timeoutID = webix.delay(updatePersons, $singlePersonForm, [], 400);
-                                }
-                                // webix.message("Value changed from: " + oldv + " to: " + newv);
-                            }
-                        }
+                        margin: 10,
+                        // on: {
+                        //     "onChange": function(newv, oldv) {
+                        //         var $singlePersonForm = this.getFormView();
+                        //         if ($singlePersonForm.isDirty()) {
+                        //             clearTimeout(timeoutID);
+                        //             // Timeout before live save is run
+                        //             timeoutID = webix.delay(updatePerson, $singlePersonForm, [], 400);
+                        //         }
+                        //         // webix.message("Value changed from: " + oldv + " to: " + newv);
+                        //     }
+                        // }
                     },
                     elements: [{
                         view: "template",
@@ -1209,26 +1243,57 @@ webix.ready(function() {
                             placeholder: _('residential_address_pls'),
                         }]
                     }, {
-                        view: "checkbox",
-                        name: "last_visa",
-                        labelRight: _('last_visa'),
-                        customCheckbox: false,
-                        height: 40,
-                        on: {
-                            "onChange": function(yes, no) {
-                                if (yes && !no) {
-                                    addDropZoneArea('last_visa', 'visaList');
+                        height: 400,
+                        cols: [{
+                            rows: [{
+                                view: "text",
+                                id: "passport_scan",
+                                name: "passport_scan",
+                                disabled: true
+                            }, {
+                                view: "template",
+                                id: "passport_scan_view",
+                                template: "<div class='image-preview'><img src='#url#' alt='#url#' /></div>",
+                                data: {
+                                    url: ''
                                 }
-                                if (!yes && no) {
-                                    removeDropZoneArea();
+                            }]
+                        }, {
+                            rows: [{
+                                view: "checkbox",
+                                name: "last_visa",
+                                labelRight: _('last_visa'),
+                                customCheckbox: false,
+                                height: 40,
+                                on: {
+                                    "onChange": function(yes, no) {
+                                        var val = $$('last_visa_scan').getValue();
+                                        if (!val) {
+                                            if (yes && !no) {
+                                                addDropZoneArea('last_visa_scan', 'sideBarWrap');
+                                            }
+                                            if (!yes && no) {
+                                                removeDropZoneArea('last_visa_scan');
+                                            }
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                    }, {
-                        view: "text",
-                        id: "last_visa_scan",
-                        name: "last_visa_scan",
-                        hidden: true
+                            }, {
+                                view: "text",
+                                id: "last_visa_scan",
+                                name: "last_visa_scan",
+                                disabled: true
+                            }, {
+                                height: 300,
+                                view: "template",
+                                id: "last_visa_scan_view",
+                                template: "<div class='image-preview'><img src='#url#' alt='#url#' /></div>",
+                                data: {
+                                    url: ""
+                                },
+                                hidden: true
+                            }]
+                        }]
                     }, {
                         view: "text",
                         name: "price",
@@ -1283,7 +1348,6 @@ webix.ready(function() {
                         type: "perslist",
                         select: true,
                         autoheight: true,
-                        // minHeight: 320,
                         scroll: false
                     }, {
                         view: "template",
@@ -1333,7 +1397,7 @@ webix.ready(function() {
 
     if (visax.sessions.length > 0) {
         $$userSessionsStore.add(visax.sessions[0]);
-        load_session(visax.sessions[0].id);
+        loadSession(visax.sessions[0].id);
     }
 
 });
