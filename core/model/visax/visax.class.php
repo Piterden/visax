@@ -42,6 +42,7 @@ class visax
             'connectorUrl'               => $assetsUrl.'connector.php',
             'webConnectorUrl'            => $assetsUrl.'web.connector.php',
 
+            'defaultBirthDate'           => '1986-05-05 00:00:00',
             'maxPersons'                 => 5,
             'emailFrom'                  => $modx->getOption('emailsender'),
             'emailFromName'              => 'admin',

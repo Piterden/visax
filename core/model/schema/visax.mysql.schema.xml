@@ -108,16 +108,16 @@
         </index>
         <aggregate alias="Country" class="visaCountry" local="country" foreign="id" cardinality="one" owner="foreign" />
         <aggregate alias="Currency" class="visaCurrency" local="currency" foreign="id" cardinality="one" owner="foreign" />
-        <composite alias="Person" class="visaPerson" local="id" foreign="session" cardinality="many" owner="local" />
+        <composite alias="Persons" class="visaPerson" local="id" foreign="session" cardinality="many" owner="local" />
     </object>
     <object class="visaPerson" table="visa_persons" extends="xPDOSimpleObject">
         <field key="session" dbtype="int" precision="10" phptype="integer" default="0" attributes="unsigned" />
         <field key="firstname" dbtype="varchar" precision="100" phptype="string" null="false" />
         <field key="sirname" dbtype="varchar" precision="100" phptype="string" null="false" />
         <field key="patronymic" dbtype="varchar" precision="100" phptype="string" null="false" />
-        <field key="birth_date" dbtype="datetime" phptype="datetime" />
+        <field key="birth_date" dbtype="varchar" precision="20" phptype="string" default="1986-05-05 00:00:00" />
         <field key="phone" dbtype="varchar" precision="20" phptype="string" null="false" />
-        <field key="desired_time" dbtype="datetime" phptype="datetime" />
+        <field key="desired_time" dbtype="varchar" precision="20" phptype="string"/>
         <field key="mother_fio" dbtype="varchar" precision="255" phptype="string" null="false" />
         <field key="mother_address" dbtype="mediumtext" phptype="string" null="false" />
         <field key="mother_phone" dbtype="varchar" precision="20" phptype="string" null="false" />
@@ -136,6 +136,7 @@
         <field key="empl_address" dbtype="mediumtext" phptype="string" null="false" />
         <field key="empl_phone" dbtype="varchar" precision="20" phptype="string" null="false" />
         <field key="last_visa" dbtype="tinyint" precision="1" phptype="boolean" default="0" attributes="unsigned" />
+        <field key="deleted" dbtype="tinyint" precision="1" phptype="boolean" default="0" attributes="unsigned" />
         <field key="last_visa_scan" dbtype="varchar" precision="255" phptype="string" null="false" />
         <field key="passport_scan" dbtype="varchar" precision="255" phptype="string" null="false" />
         <field key="price" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />

@@ -1,4 +1,4 @@
-webix.storage.local.put("helpers_data", {
+webix.storage.local.put("data_helpers", {
     regions: [
         { id: 1, value: "Северо-Западный федеральный округ" },
         { id: 2, value: "Центральный федеральный округ" },

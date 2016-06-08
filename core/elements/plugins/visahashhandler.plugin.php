@@ -21,7 +21,7 @@ if ('visa' == $tmp[0] && count($tmp) >= 2)
     if ($session = $modx->getObject('visaSession', array('url_hash' => $url_hash)))
     {
         $sData = $session->toArray();
-        $persons = $session->getMany('Person');
+        $persons = $session->getMany('Persons');
 
         $pData = array();
         foreach ($persons as $person)

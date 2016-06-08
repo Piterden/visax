@@ -17,8 +17,8 @@
 
 /* @var $modx modX */
 
-
-class visaxSessionUpdateProcessor extends modObjectUpdateProcessor {
+class visaxSessionUpdateProcessor extends modObjectUpdateProcessor
+{
     public $classKey = 'visaSession';
     public $languageTopics = array('visax:default');
     public $objectType = 'visax.session';

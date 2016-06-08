@@ -24,16 +24,15 @@ class visaxSessionCreateProcessor extends modObjectCreateProcessor
     public $objectType = 'visax.session';
     public $requiredFields = array('country', 'email');
 
-    public $personsCount = 0;
+    public $personsCount;
 
     /**
      * @return boolean
      */
     public function initialize()
     {
-        // echo '<pre>'; print_r(1); die();
-        $this->personsCount = $this->getProperty('persons_count', 0);
-        if ($this->personsCount < 1)
+        $this->personsCount = $this->getProperty('persons_count', false);
+        if (!$this->personsCount)
         {
             return $this->modx->lexicon('visax.empty_persons');
         }
@@ -70,10 +69,10 @@ class visaxSessionCreateProcessor extends modObjectCreateProcessor
                 ), array(
                     'processors_path' => $this->modx->visax->config['processorsPath']
                 ));
+
                 $data = $this->modx->fromJSON($response->getResponse());
                 if (true === $data['success'])
                 {
-                    // return $this->success('show_modal', $data['results']);
                     return $this->outputArray($data['results'], $data['total'], 'show_modal');
                 }
                 return $this->failure($this->modx->lexicon('visa.session_err_getlist'));
@@ -100,7 +99,7 @@ class visaxSessionCreateProcessor extends modObjectCreateProcessor
             }
             $persons[] = $person;
         }
-        $this->object->addMany($persons, 'Person');
+        $this->object->addMany($persons, 'Persons');
 
         // Save
         if (!$this->object->save())
@@ -112,8 +111,12 @@ class visaxSessionCreateProcessor extends modObjectCreateProcessor
         $persArray = array();
         foreach ($persons as $person)
         {
-            $persArray[] = $person->toArray();
+            $arr = $person->toArray();
+            if (!$arr['deleted']) {
+                $persArray[] = $arr;
+            }
         }
+
         $this->object->set('persons', $persArray);
         $this->object->set('persons_count', count($persons));
         $this->object->set('country_name', $this->object->getOne('Country')->get('name'));

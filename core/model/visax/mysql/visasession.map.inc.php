@@ -129,7 +129,7 @@ $xpdo_meta_map['visaSession']= array (
   ),
   'composites' => 
   array (
-    'Person' => 
+    'Persons' => 
     array (
       'class' => 'visaPerson',
       'local' => 'id',

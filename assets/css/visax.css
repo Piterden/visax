@@ -29,6 +29,10 @@ body {
 legend {
     margin-bottom: 5px;
 }
+#ruler {
+    visibility: hidden;
+    white-space: nowrap;
+}
 .webix_hcell {
     padding: 0;
     text-align: center;
@@ -146,7 +150,7 @@ legend {
     color: #000;
     font-size: 14px;
     line-height: 1.4;
-    margin-right: 4px;
+    /* margin-right: 4px; */
 }
 .webix_el_box .webixtype_form,
 .webix_popup_button.confirm div {
@@ -413,8 +417,7 @@ button.btn-primary:hover {
     border-bottom: 10px solid transparent;
     border-right: 10px solid #0EB977;
 }
-.arrow-left {
-}
+.arrow-left {}
 .overall {
     position: absolute;
     width: 100%;
@@ -422,14 +425,30 @@ button.btn-primary:hover {
 }
 .overall .small {
     color: #ddd;
+    width: 52%;
+    float: left;
 }
 .overall:hover .small {
     color: #999;
 }
 .overall .title {
     float: left;
-    width: 80%;
+    width: 52%;
     color: #fff;
+}
+.overall .cost {
+    color: #ddd;
+    float: left;
+    text-align: right;
+    width: 35%;
+}
+.webix_list_item:hover .title,
+.webix_list_item:hover .cost,
+.webix_list_item:hover .small {
+    color: #888;
+}
+.webix_selected .cost {
+    color: #888;
 }
 .webix_list_item:hover {
     background: #ddd;
