@@ -7,41 +7,37 @@
 
 class visax
 {
-    /**
-     * @var $modx modX
-     */
+    const SALT = '34755e5b77ad4094132a90faec7ca5b3';
+
     public $modx;
-    /**
-     * @var $props array
-     */
     public $config;
-    /**
-     * True if the class has been initialized or not.
-     * @var boolean $_initialized
-     */
+
     private $initialized;
 
     public function __construct(modX &$modx, array $config = array())
     {
         $this->modx = &$modx;
-        $corePath = $modx->getOption('visax.core_path', null,
-            $modx->getOption('core_path').'components/visax/');
-        $assetsUrl = $modx->getOption('visax.assets_url', null,
-            $modx->getOption('assets_url').'components/visax/');
+        $corePath = $modx->getOption(
+            'visax.core_path', null,
+            $modx->getOption('core_path').'components/visax/'
+        );
+        $assetsUrl = $modx->getOption(
+            'visax.assets_url', null,
+            $modx->getOption('assets_url').'components/visax/'
+        );
 
-        $this->config = array_merge(array(
+        $this->config = array_merge(
+            array(
             'corePath'                   => $corePath,
             'chunksPath'                 => $corePath.'elements/chunks/',
             'modelPath'                  => $corePath.'model/',
             'processorsPath'             => $corePath.'processors/',
             'templatesPath'              => $corePath.'templates/',
-
             'assetsUrl'                  => $assetsUrl,
             'cssUrl'                     => $assetsUrl.'css/',
             'jsUrl'                      => $assetsUrl.'js/',
             'connectorUrl'               => $assetsUrl.'connector.php',
             'webConnectorUrl'            => $assetsUrl.'web.connector.php',
-
             'defaultBirthDate'           => '1986-05-05 00:00:00',
             'maxPersons'                 => 5,
             'emailFrom'                  => $modx->getOption('emailsender'),
@@ -52,7 +48,8 @@ class visax
             'emailToUserPersonTpl'       => 'email_user_person',
             'emailToUserPersonSeparator' => '',
             'container'                  => 'ajaxWrapper'
-        ), $config);
+            ), $config
+        );
 
         $modx->addPackage('visax', $this->config['modelPath']);
         $modx->lexicon->load('visax:default');
@@ -71,7 +68,7 @@ class visax
         if (!empty($this->initialized[$ctx])) {
             return true;
         }
-        $output = '';
+
         switch ($ctx)
         {
             case 'mgr':
@@ -86,17 +83,24 @@ class visax
 
     public function sendMailToUser($data)
     {
-        $persons_output = '';
-        foreach ($data['persons'] as $person)
-        {
-            $persons_output .= $this->modx->parseChunk($this->config['emailToUserPersonTpl'], $person);
-            $persons_output .= $this->config['emailToUserPersonSeparator'];
-        }
-        $persons_output = rtrim($persons_output, $this->config['emailToUserPersonSeparator']);
+        $personsOutput = '';
 
-        $message = $this->modx->parseChunk($this->config['emailToUserTpl'], array_merge($data, array(
-            'persons_output' => $persons_output
-        )));
+        if ($data['id']) {
+            foreach ($data['persons'] as $person)
+            {
+              $personsOutput .= $this->modx->parseChunk($this->config['emailToUserPersonTpl'], $person);
+              $personsOutput .= $this->config['emailToUserPersonSeparator'];
+            }
+            $personsOutput = rtrim($personsOutput, $this->config['emailToUserPersonSeparator']);
+        }
+
+        $message = $this->modx->parseChunk(
+            $this->config['emailToUserTpl'],
+            array_merge($data, array(
+              'persons_output' => $personsOutput,
+              // 'password' => $this->generatePassword($data['email'])
+            ))
+        );
 
         $this->modx->getService('mail', 'mail.modPHPMailer');
         $this->modx->mail->set(modMail::MAIL_BODY, $message);
@@ -110,6 +114,11 @@ class visax
         //call send mail
         return $this->modx->mail->send();
         // return $message;
+    }
+
+    public function generatePassword($email)
+    {
+        return hash('adler32', $email.self::SALT);
     }
 
 }

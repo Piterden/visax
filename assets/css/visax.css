@@ -9,46 +9,46 @@
 
 html,
 body {
-    font-family: 'Roboto', sans-serif;
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
 }
 .content.container {
-    width: 1144px;
+  width: 1144px;
 }
 .label {
-    display: inline-block;
-    padding: 0.5em .6em 0.6em;
-    font-size: 1.7em;
-    font-weight: normal;
-    color: #333;
+  display: inline-block;
+  padding: 0.5em .6em 0.6em;
+  font-size: 1.7em;
+  font-weight: normal;
+  color: #333;
 }
 legend {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 #ruler {
-    visibility: hidden;
-    white-space: nowrap;
+  visibility: hidden;
+  white-space: nowrap;
 }
 .webix_hcell {
-    padding: 0;
-    text-align: center;
+  padding: 0;
+  text-align: center;
 }
 .webix_overlay {
-    background: rgba(113, 113, 113, 0.35);
-    font-size: 42px;
-    height: 100%;
-    padding: 0;
-    border-radius: 4px;
+  background: rgba(113, 113, 113, 0.35);
+  font-size: 42px;
+  height: 100%;
+  padding: 0;
+  border-radius: 4px;
 }
 .webix_icon,
 .webix_input_icon {
-    font-size: 20px;
-    line-height: 1.6;
-    color: #9C27B0;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #9C27B0;
 }
 .webix_view,
 .webix_el_box .webixtype_form,
@@ -76,8 +76,10 @@ legend {
 .webix_button input,
 .webix_popup_button div,
 .webix_cal_footer .webix_cal_done,
-.webix_time_footer .webix_cal_done {
-    font-family: 'Roboto', sans-serif;
+.webix_time_footer .webix_cal_done,
+.webix_dt_editor input,
+.webix_dt_editor select {
+  font-family: 'Roboto', sans-serif;
 }
 .webix_icon,
 .webix_input_icon,
@@ -93,46 +95,48 @@ legend {
 .webix_img_btn_top .webix_icon,
 .webix_img_btn_top .webix_img_btn_text,
 .addPersonBtn button {
-    cursor: pointer;
-    -webkit-transition: all .25s ease-out;
-    -o-transition: all .25s ease-out;
-    transition: all .25s ease-out;
+  cursor: pointer;
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
 }
 .webix_icon:hover,
 .webix_input_icon:hover {
-    color: #0EB977;
+  color: #0EB977;
 }
 .webix_el_combo span.webix_input_icon,
 .webix_el_richselect span.webix_input_icon {
-    line-height: 1;
+  line-height: 1;
 }
 .webix_segment_0,
 .webix_segment_1,
 .webix_segment_N {
-    background: #00A163;
-    border: none;
+  background: #00A163;
+  border: none;
 }
 .webix_segment_0.webix_selected,
 .webix_segment_1.webix_selected,
 .webix_segment_N.webix_selected {
-    background: #fff;
-    color: #464646;
-    border-color: transparent;
-    -webkit-transition: all .25s ease-out;
-    -o-transition: all .25s ease-out;
-    transition: all .25s ease-out;
-    border-radius: 0;
+  background: #fff;
+  color: #464646;
+  border-color: transparent;
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
+  border-radius: 0;
 }
 .webix_selected.webix_segment_0:hover,
 .webix_selected.webix_segment_1:hover,
 .webix_selected.webix_segment_N:hover {
-    background-color: #0EB977;
+  background-color: #0EB977;
 }
 .webix_all_segments .webix_segment_1,
 .webix_all_segments .webix_segment_N {
-    margin-left: 1px;
-    border-left: none;
-    border-radius: 0;
+  margin-left: 1px;
+  border-left: none;
+  border-radius: 0;
 }
 .webix_header>div,
 .webix_el_colorpicker span.webix_input_icon,
@@ -145,27 +149,27 @@ legend {
 .webix_layout_toolbar.webix_toolbar,
 .webix_cal_footer .webix_cal_done,
 .webix_time_footer .webix_cal_done {
-    background: transparent;
-    border-color: transparent;
-    color: #000;
-    font-size: 14px;
-    line-height: 1.4;
-    /* margin-right: 4px; */
+  background: transparent;
+  border-color: transparent;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.4;
+  /* margin-right: 4px; */
 }
 .webix_el_box .webixtype_form,
 .webix_popup_button.confirm div {
-    border: none;
-    background: #4CAF50;
-    border-color: #9E9E9E;
+  border: none;
+  background: #4CAF50;
+  border-color: #9E9E9E;
 }
 .webix_el_colorpicker span.webix_input_icon,
 .webix_el_datepicker span.webix_input_icon,
 .webix_el_dbldatepicker span.webix_input_icon,
 .webix_el_search span.webix_input_icon {
-    line-height: 1;
+  line-height: 1;
 }
 .webix_el_checkbox {
-    margin-bottom: -20px;
+  margin-bottom: -20px;
 }
 .webix_layout_toolbar.webix_toolbar .webix_inp_counter_next:hover,
 .webix_layout_toolbar.webix_toolbar .webix_inp_counter_prev:hover,
@@ -173,87 +177,87 @@ legend {
 .webix_layout_toolbar.webix_toolbar .webix_segment_1:hover,
 .webix_layout_toolbar.webix_toolbar .webix_segment_N:hover,
 .webix_layout_toolbar.webix_toolbar .webixtype_base:hover {
-    color: #3F51B5;
-    background-color: #FFEB3B;
+  color: #3F51B5;
+  background-color: #FFEB3B;
 }
 .dropzone,
 .dropzone,
 .webix_view.webix_control.dropzone {
-    position: absolute;
-    top: 1px;
-    right: 0;
-    background: #FEFEFE;
-    opacity: 0;
-    z-index: 15;
-    white-space: normal;
+  position: absolute;
+  top: 1px;
+  right: 0;
+  background: #FEFEFE;
+  opacity: 0;
+  z-index: 15;
+  white-space: normal;
 }
 .dropzone:hover {
-    box-shadow: inset 0px 0px 10px 4px #9E9E9E;
+  box-shadow: inset 0px 0px 10px 4px #9E9E9E;
 }
 .dropzone .webix_img_btn_top {
-    border: 10px dashed rgba(121, 85, 72, 0.5);
-    border-radius: 0;
-    background: rgba(158, 158, 158, 0.5);
-    font-size: 20px;
+  border: 10px dashed rgba(121, 85, 72, 0.5);
+  border-radius: 0;
+  background: rgba(158, 158, 158, 0.5);
+  font-size: 20px;
 }
 .dropzone .webix_img_btn_top .webix_icon {
-    top: 35%;
-    font-size: 70px;
-    color: rgba(121, 85, 72, 0.6);
-    margin-left: -32px;
+  top: 35%;
+  font-size: 70px;
+  color: rgba(121, 85, 72, 0.6);
+  margin-left: -32px;
 }
 .dropzone .webix_img_btn_top .webix_img_btn_text {
-    bottom: 30%;
-    color: rgba(121, 85, 72, 0.75);
-    width: 90%;
-    padding-left: 10%;
+  bottom: 30%;
+  color: rgba(121, 85, 72, 0.75);
+  width: 90%;
+  padding-left: 10%;
 }
 .dropzone.webix_drop_file:before {
-    display: none;
+  display: none;
 }
 .dropzone.webix_drop_file .webix_img_btn_top,
 .dropzone:hover .webix_img_btn_top {
-    border: 10px dashed #795548;
-    background: rgba(158, 158, 158, 0.2);
+  border: 10px dashed #795548;
+  background: rgba(158, 158, 158, 0.2);
 }
 .dropzone.webix_drop_file .webix_img_btn_top .webix_icon,
 .dropzone:hover .webix_img_btn_top .webix_icon {
-    color: rgb(121, 85, 72);
+  color: rgb(121, 85, 72);
 }
 .dropzone.webix_drop_file .webix_img_btn_top .webix_img_btn_text,
 .dropzone:hover .webix_img_btn_top .webix_img_btn_text {
-    color: rgb(121, 85, 72);
+  color: rgb(121, 85, 72);
 }
 .webix_column>div.webix_cell_select,
 .webix_column>div.webix_column_select,
 .webix_column>div.webix_row_select {
-    color: #fff;
-    background: #4CAF50;
+  color: #fff;
+  background: #4CAF50;
 }
 .collapse-btn {
-    float: right;
+  float: right;
 }
 .webix_view.webix_control.dropzone.op1 {
-    opacity: 1;
+  opacity: 1;
 }
 .webix_ss_header table,
 .webix_ss_center_scroll {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 .text-right {
-    text-align: right;
+  text-align: right;
 }
 .text-left {
-    text-align: left;
+  text-align: left;
 }
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 .webix_list_item {
-    position: relative;
+  position: relative;
 }
 .webix_list_item {
-    height: 34px;
+  height: 34px;
 }
 .webix_inp_counter_next:hover,
 .webix_inp_counter_prev:hover,
@@ -262,10 +266,10 @@ legend {
 .webix_segment_N:hover,
 .webixbutton:hover,
 .webixtype_base:hover {
-    background-color: #0EB977;
+  background-color: #0EB977;
 }
 .webix_invalid .webix_inp_static .webix_placeholder {
-    color: #F44336;
+  color: #F44336;
 }
 .webix_el_colorpicker.webix_invalid span.webix_input_icon,
 .webix_el_combo.webix_invalid span.webix_input_icon,
@@ -275,209 +279,284 @@ legend {
 .webix_invalid .webix_button input,
 .webix_invalid .webix_popup_button div,
 .webix_invalid .webix_layout_toolbar.webix_toolbar {
-    background: #F44336;
+  background: #F44336;
 }
 .webix_progress_icon .webix_progress_state {
-    color: #795548;
+  color: #795548;
 }
 .webix_progress_icon {
-    background: rgba(158, 158, 158, 0.3);
+  background: rgba(158, 158, 158, 0.3);
 }
 .webix_view.webix_control {
-    position: relative;
-    white-space: nowrap;
+  position: relative;
+  white-space: nowrap;
 }
 .webix_property_label_line {
-    background: #0EB977;
+  background: #0EB977;
 }
 .webix_inp_top_label .webix_view.webix_control.absolute {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 3;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
 }
 .absolute .webix_icon_btn {
-    font-size: 11px;
-    color: #fff;
+  font-size: 11px;
+  color: #fff;
 }
 .button_remove .webix_icon_btn {
-    color: #F44336;
-    padding: 2px 0;
-    border-radius: 4px;
-    -webkit-transition: color .4s ease-out;
-    -o-transition: color .4s ease-out;
-    transition: color .4s ease-out;
+  color: #F44336;
+  padding: 2px 0;
+  border-radius: 4px;
+  -webkit-transition: color .4s ease-out;
+  -moz-transition: color .4s ease-out;
+  -o-transition: color .4s ease-out;
+  transition: color .4s ease-out;
 }
 .button_remove .webix_icon_btn:hover {
-    background-color: #F44336;
-    color: #fff;
+  background-color: #F44336;
+  color: #fff;
 }
 .webix_view.button_add button {
-    background: #00A163;
-    border-radius: 6px;
+  background: #00A163;
+  border-radius: 6px;
 }
 .webix_view.button_add button:hover {
-    background-color: #4CAF50;
+  background-color: #4CAF50;
 }
 .webix_layout_toolbar.webix_toolbar .webix_img_btn:hover,
 .webix_layout_toolbar.webix_toolbar .webix_img_btn_top:hover {
-    background-color: #8BC34A;
+  background-color: #8BC34A;
 }
 .webix_el_button.text-center button {
-    text-align: center;
+  text-align: center;
 }
 .webix_el_segmented .webix_el_box {
-    padding: 0;
+  padding: 0;
 }
 .header-wrap {
-    padding-top: 7px;
+  padding-top: 7px;
+}
+.header-wrap.step3 {
+  padding-top: 24px;
+  padding-left: 38px;
 }
 .webix_inp_top_label {
-    padding: 0px 7px;
+  padding: 0px 7px;
 }
 .clean-butt .webix_el_box,
 .submit-butt .webix_el_box {
-    margin-top: -3px;
+  margin-top: -3px;
 }
 .clean-butt .webix_el_box .webixtype_form {
-    background: transparent;
-    border: 2px solid #00A163;
-    color: #666;
-    border-radius: 4px;
+  background: transparent;
+  border: 2px solid #00A163;
+  color: #666;
+  border-radius: 4px;
 }
 .submit-butt .webix_el_box .webixtype_form {
-    background: #00A163;
-    border-radius: 4px;
+  background: #00A163;
+  border-radius: 4px;
 }
 .mt1 {
-    margin-top: 1px;
+  margin-top: 1px;
 }
 .webix_view button {
-    border-radius: 0;
+  border-radius: 0;
 }
 .webix_list-x .webix_list_item {
-    margin-right: 40px;
+  margin-right: 40px;
 }
 .webix_list-x .webix_scroll_cont .webix_view.webix_control.absolute {
-    right: -30px;
-    left: auto;
-    position: absolute;
-    top: 0;
-    z-index: 3;
+  right: -30px;
+  left: auto;
+  position: absolute;
+  top: 0;
+  z-index: 3;
 }
 .webix_list .button_remove.absolute {
-    right: 3px;
-    position: absolute;
-    top: 4px;
+  right: 3px;
+  position: absolute;
+  top: 4px;
 }
 .webix_view .webix_fieldset fieldset {
-    border: none;
+  border: none;
 }
 .top-line {
-    font-size: 1.2em;
-    text-align: center;
+  font-size: 1.2em;
+  text-align: center;
 }
 .bottom-line {
-    text-align: center;
+  text-align: center;
 }
 button.btn-primary {
-    background: #00A163;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 12px 20px;
-    text-transform: uppercase;
-    -webkit-transition: background .4s ease-out;
-    -o-transition: background .4s ease-out;
-    transition: background .4s ease-out;
+  background: #00A163;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 12px 20px;
+  text-transform: uppercase;
+  -webkit-transition: background .4s ease-out;
+  -moz-transition: background .4s ease-out;
+  -o-transition: background .4s ease-out;
+  transition: background .4s ease-out;
 }
 button.btn-primary:hover {
-    background-color: #0EB977;
-    border-color: #0EB977;
+  background-color: #0EB977;
+  border-color: #0EB977;
 }
 .webix_view.float-block {
-    background-color: #00A163;
+  background-color: #00A163;
 }
 .webix_list .webix_list_item,
 .webix_list .webix_list_item.webix_selected {
-    border: none;
+  border: none;
 }
 .webix_list_item.webix_selected {
-    background: #0EB977;
+  background: #0EB977;
 }
 .webix_list_item.webix_selected:before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: calc(50% - 9px);
-    background: transparent;
-    z-index: 1;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid #0EB977;
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: calc(50% - 9px);
+  background: transparent;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #0EB977;
 }
 .arrow-left {}
 .overall {
-    position: absolute;
-    width: 100%;
-    padding: 0;
+  position: absolute;
+  width: 100%;
+  padding: 0;
 }
 .overall .small {
-    color: #ddd;
-    width: 52%;
-    float: left;
+  color: #ddd;
+  width: 52%;
+  float: left;
 }
 .overall:hover .small {
-    color: #999;
+  color: #999;
 }
 .overall .title {
-    float: left;
-    width: 52%;
-    color: #fff;
+  float: left;
+  width: 52%;
+  color: #fff;
 }
 .overall .cost {
-    color: #ddd;
-    float: left;
-    text-align: right;
-    width: 35%;
+  color: #ddd;
+  float: left;
+  text-align: right;
+  width: 35%;
 }
 .webix_list_item:hover .title,
 .webix_list_item:hover .cost,
 .webix_list_item:hover .small {
-    color: #888;
+  color: #888;
 }
 .webix_selected .cost {
-    color: #888;
+  color: #888;
 }
 .webix_list_item:hover {
-    background: #ddd;
+  background: #ddd;
 }
 .webix_list_item:hover .title {
-    color: #3B3B3B;
+  color: #3B3B3B;
 }
 .webix_view.mt1 .webix_view {
-    overflow: visible;
+  overflow: visible;
 }
 .webix_view.mt1 .webix_view .webix_scroll_cont {
-    overflow: visible;
+  overflow: visible;
 }
 .addPersonBtn button {
-    background-color: #00A163;
-    border-color: #fff;
-    border-radius: 4px;
+  background-color: #00A163;
+  border-color: #fff;
+  border-radius: 4px;
 }
 .addPersonBtn button:hover {
-    background-color: #0EB977;
+  background-color: #0EB977;
 }
 .webix_el_label {
-    color: #888;
-    font-weight: normal;
+  color: #888;
+  font-weight: normal;
 }
 .top-fixed {
-    position: fixed;
-    top: 0;
+  position: fixed;
+  top: 0;
 }
 .image-preview img {
-    width: 100%;
+  width: 100%;
+}
+.webix_view.webix_accordionitem.vertical {
+  border: none;
+}
+.webix_view.webix_layout_accordion {
+  background: #fff;
+}
+.webix_accordionitem.collapsed,
+.webix_accordionitem.horizontal.collapsed,
+.webix_accordionitem.collapsed .webix_accordionitem_header,
+.webix_accordionitem.horizontal.collapsed .webix_accordionitem_header {
+  background-color: #fff;
+  color: #000;
+}
+.webix_accordionitem.collapsed .webix_accordionitem_header {
+  border: none;
+  position: relative;
+}
+.webix_accordionitem.collapsed .webix_accordionitem_header:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: 1px solid #0EB977;
+  border-radius: 4px;
+}
+.webix_accordionitem_header {
+  font-size: 16px;
+  background: #0EB977;
+  line-height: 2.5;
+  padding: 0 0 0 6px;
+  border-radius: 4px;
+  border: 1px solid #0eb977;
+}
+.webix_accordionitem_header.collapsed .webix_accordionitem_label {
+  background: #fff;
+  color: #000;
+  line-height: 2.8;
+}
+.webix_accordionitem.vertical>.webix_accordionitem_header .webix_accordionitem_button {
+  margin: -12px 8px 0 0;
+}
+.webix_accordionitem.vertical.collapsed>.webix_accordionitem_header .webix_accordionitem_button {
+  color: #000;
+  margin-top: -10px;
+}
+.webix_accordionitem.vertical.collapsed>.webix_accordionitem_header .webix_accordionitem_button:before {
+  content: '\f107';
+}
+.webix_property_label,
+.webix_property_value {
+  height: 40px;
+  line-height: 2.7;
+  padding-left: 18px;
+}
+.webix_el_datepicker .webix_el_box,
+.webix_el_richselect .webix_el_box {
+  cursor: pointer;
+}
+.webix_window {
+  box-shadow: 0 0 0 1000px rgba(0,0,0,0.3);
+}
+.webix_window.webix_popup {
+  box-shadow: 1px 3px 4px #c8c8c8;
+}
+.webix_modal_box {
+  width: 500px;
 }

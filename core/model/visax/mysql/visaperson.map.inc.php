@@ -10,7 +10,7 @@ $xpdo_meta_map['visaPerson']= array (
     'firstname' => NULL,
     'sirname' => NULL,
     'patronymic' => NULL,
-    'birth_date' => NULL,
+    'birth_date' => '1986-05-05 00:00:00',
     'phone' => NULL,
     'desired_time' => NULL,
     'mother_fio' => NULL,
@@ -31,6 +31,7 @@ $xpdo_meta_map['visaPerson']= array (
     'empl_address' => NULL,
     'empl_phone' => NULL,
     'last_visa' => 0,
+    'deleted' => 0,
     'last_visa_scan' => NULL,
     'passport_scan' => NULL,
     'price' => 0,
@@ -68,8 +69,10 @@ $xpdo_meta_map['visaPerson']= array (
     ),
     'birth_date' => 
     array (
-      'dbtype' => 'datetime',
-      'phptype' => 'datetime',
+      'dbtype' => 'varchar',
+      'precision' => '20',
+      'phptype' => 'string',
+      'default' => '1986-05-05 00:00:00',
     ),
     'phone' => 
     array (
@@ -80,8 +83,9 @@ $xpdo_meta_map['visaPerson']= array (
     ),
     'desired_time' => 
     array (
-      'dbtype' => 'datetime',
-      'phptype' => 'datetime',
+      'dbtype' => 'varchar',
+      'precision' => '20',
+      'phptype' => 'string',
     ),
     'mother_fio' => 
     array (
@@ -198,6 +202,14 @@ $xpdo_meta_map['visaPerson']= array (
       'null' => false,
     ),
     'last_visa' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'default' => 0,
+      'attributes' => 'unsigned',
+    ),
+    'deleted' => 
     array (
       'dbtype' => 'tinyint',
       'precision' => '1',

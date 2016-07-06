@@ -1,6 +1,6 @@
 <?php
 /**
- * Processor file for visax extra
+ * Processor file for visax extra.
  *
  * currency
  * country
@@ -10,22 +10,18 @@
  * editedon
  * url_hash
  * state
- *
- * @package visax
- * @subpackage processors
  */
 
 /* @var $modx modX */
 
-class visaxSessionGetProcessor extends modObjectGetProcessor
+class VisaxSessionGetProcessor extends modObjectGetProcessor
 {
     public $classKey = 'visaSession';
     public $languageTopics = array('visax:default');
     public $objectType = 'visax.session';
 
     /**
-     * Used for adding custom data in derivative types
-     * @return void
+     * Used for adding custom data in derivative types.
      */
     public function beforeOutput()
     {
@@ -33,8 +29,7 @@ class visaxSessionGetProcessor extends modObjectGetProcessor
         // $this->object->set('_currency', $currency);
         $p = $this->object->getMany('Persons');
         $persons = array();
-        foreach ($p as $person)
-        {
+        foreach ($p as $person) {
             $arr = $person->toArray();
             if (!$arr['deleted']) {
                 $persons[] = $arr;
@@ -48,7 +43,8 @@ class visaxSessionGetProcessor extends modObjectGetProcessor
     }
 
     /**
-     * Return the response
+     * Return the response.
+     *
      * @return array
      */
     public function cleanup()
@@ -58,17 +54,20 @@ class visaxSessionGetProcessor extends modObjectGetProcessor
 
     /**
      * Return arrays of objects (with count) converted to JSON.
-     * @param  array  $array An array of data objects.
-     * @param  mixed  $count The total number of objects. Used for pagination.
+     *
+     * @param array $array An array of data objects.
+     * @param mixed $count The total number of objects. Used for pagination.
+     *
      * @return string The JSON output.
      */
     public function outputArray(array $array, $count = false, $message = '')
     {
-        if (false === $count)
-        {
-            $count = count($array);}
+        if (false === $count) {
+            $count = count($array);
+        }
+
         return '{"message":"'.$message.'","success":true,"total":'.$count.',"results":'.$this->modx->toJSON($array).'}';
     }
-
 }
-return 'visaxSessionGetProcessor';
+
+return 'VisaxSessionGetProcessor';

@@ -1,3 +1,9 @@
+String.prototype.visualLength = function() {
+  var ruler = document.getElementById("ruler");
+  ruler.innerHTML = this;
+  return ruler.offsetWidth + 30;
+};
+
 var // @vars
   $$userSessionsStore, // session storage
   $$personsStore, // persons for current session storage
@@ -21,9 +27,9 @@ var // @vars
    * @return {string}         Capitalized
    */
   _C = function(word, onlyFirstLetter) {
-    if (!word) return '';
+    if(!word) return '';
     word = word.toLowerCase();
-    return (!onlyFirstLetter) ? word[0].toUpperCase() + word.slice(1) + ' ' : word[0].toUpperCase() + '. ';
+    return(!onlyFirstLetter) ? word[0].toUpperCase() + word.slice(1) + ' ' : word[0].toUpperCase() + '. ';
   },
 
   /**
@@ -33,7 +39,16 @@ var // @vars
    * @return {void}
    */
   person_updated = function(data) {
+    var person = data.results,
+      index = $$('visaList').getIndexById(person.id),
+      $accordionItem = $$('personProps' + index).getParentView(),
+      name = (!person.sirname.length) ? 'Заявитель №' + index : _C(person.sirname) + _C(person.firstname) + _C(person.patronymic);
+
     $$('visaForm').setDirty(!data.success);
+
+    $accordionItem.define('header', name);
+    $accordionItem.define('headerAlt', name + ' (Открыть)');
+    $accordionItem.refresh();
   },
 
   /**
@@ -43,33 +58,22 @@ var // @vars
    * @return {void}
    */
   person_added = function(data) {
-    if (data.success) {
+    if(data.success) {
+      // session = $$userSessionsStore.getItem(data.object.session);
       $$personsStore.add(data.object);
+
+      addPersonToAccordion(data.object);
     }
   },
 
   /**
-   * Запускается со стороны бэкенда после успешного удаления заявителя
-   * After person added
-   * @param  {number} response
-   * @return {void}
-   */
-  person_removed = function(data) {
-    if (data.success) {
-      $$personsStore.remove(data.object.id);
-      updateAllCosts();
-    }
-  },
-
-  /**
-   * Таймаут ко всем событиям сохранения заявителя
-   * Обновление таблицы в 3 шаге
+   * Таймаут ко всем событиям сохранения за
    * @return {[type]} [description]
    */
   updatePerson = function() {
     var $form = $$('visaForm');
 
-    if ($form.isDirty()) {
+    if($form.isDirty()) {
       clearTimeout(timeoutID);
       // Timeout before live save is run
       timeoutID = webix.delay(function() {
@@ -82,7 +86,7 @@ var // @vars
         $$personsStore.updateItem(id, newVals);
         $$('personProps' + index).bind($form);
 
-      }, $form, [], 500);
+      }, $form, [], 800);
     }
   },
 
@@ -114,7 +118,7 @@ var // @vars
 
     id = id || currentSessionId;
 
-    if ($modal !== undefined) $modal.close();
+    if($modal !== undefined) $modal.close();
 
     // Связывание хранилищ, форм и списков
     $personsList.sync($$personsStore);
@@ -138,9 +142,9 @@ var // @vars
       var oldId = this.getSelectedId(),
         oldIdx = this.getIndexById(oldId),
         newIdx = this.getIndexById(newId);
-      if (newId == oldId) return false;
+      if(newId == oldId) return false;
 
-      if ($singlePersonForm.isDirty()) {
+      if($singlePersonForm.isDirty()) {
         togglePerson(newId, oldId, newIdx, oldIdx);
       }
       $prevSurList.updatePrevSirnamesList(newId);
@@ -157,7 +161,7 @@ var // @vars
      * После редактирования фамилии в списке предыдущих фамилий
      */
     $prevSurList.attachEvent("onAfterEditStop", function(state, editor) {
-      if (state.value != state.old) {
+      if(state.value != state.old) {
         this.updatePrevSirnamesStr();
       }
     });
@@ -190,6 +194,80 @@ var // @vars
   },
 
   /**
+   * Запускается со стороны бэкенда после успешного удаления заявителя
+   * After person added
+   * @param  {number} response
+   * @return {void}
+   */
+  person_removed = function(data) {
+    var person = data.object,
+      propViewName = '$accordionitem' + (getPersonIndex(person.id) + 2);
+    if(!data.success) {
+      return false;
+    }
+    $$('propsAccord').removeView(propViewName);
+    $$personsStore.remove(person.id);
+
+    updateAllCosts();
+  },
+
+  getPersonIndex = function(id) {
+    return $$personsStore.getIndexById(id);
+  },
+
+  getPersonTitle = function(person) {
+    return !person.sirname || !person.sirname.length ?
+      'Заявитель №' + (getPersonIndex(person.id) + 1) :
+      _C(person.sirname) + _C(person.firstname) + _C(person.patronymic);
+  },
+
+  getPropViewElems = function(person) {
+    var elems = [];
+    for(var key in person) {
+      if(person.hasOwnProperty(key) && key != 'id' && key != 'session') {
+        var val = person[key] || _('empty'),
+          el = { label: _(key), type: "text", id: key, value: val };
+
+        if(key == 'birth_date' || key == 'desired_time') {
+          el.type = 'date';
+          el.format = webix.i18n.parseFormatStr;
+        }
+
+        elems.push(el);
+      }
+    }
+    return elems;
+  },
+
+  addPersonToAccordion = function(person, i) {
+    if (i === undefined) {
+      i = getPersonIndex(person.id);
+    }
+    var elems = getPropViewElems(person),
+      title = getPersonTitle(person),
+      viewConfig = {
+        borderless: true,
+        header: title,
+        headerHeight: 41,
+        headerAlt: title + " (Открыть)",
+        headerAltHeight: 41,
+        view: "accordionitem",
+        collapsed: true,
+        css: "collapsed",
+        body: {
+          view: "property",
+          id: "personProps" + i,
+          editable: false,
+          elements: elems,
+          nameWidth: 400,
+          height: elems.length * 40
+        }
+      };
+
+    $$('propsAccord').addView(viewConfig, i + 2);
+  },
+
+  /**
    * Init step 3
    * @param  {object} session
    * @param  {array} persons
@@ -201,33 +279,9 @@ var // @vars
     $sessionPS.setValues(session);
     $sessionPS.show();
 
-    for (var i = 0; i < persons.length; i++) {
-      var person = persons[i],
-        elems = [{
-          label: _C(person.sirname) + _C(person.firstname) + _C(person.patronymic),
-          type: 'label'
-        }];
-
-      for (var key in person) {
-        if (person.hasOwnProperty(key)) {
-          var val = person[key] || _('empty'),
-            el = { label: _(key), type: "text", id: key, value: val };
-          if (key == 'birth_date' || key == 'desired_time') {
-            el.type = "date";
-            el.format = webix.i18n.parseFormatStr;
-          }
-          elems.push(el);
-        }
-      }
-
-      $$('vertScroll').getBody().addView({
-        view: "property",
-        id: "personProps" + i,
-        editable: false,
-        height: "auto",
-        elements: elems,
-        nameWidth: 300
-      });
+    for(var i = 0, l = persons.length; i < l; i++) {
+      var person = persons[i];
+      addPersonToAccordion(person, i);
     }
 
   },
@@ -237,7 +291,9 @@ var // @vars
    */
   new_session = function(data) {
     var session = data.results,
-      persons = session.persons;
+      persons = session.persons || [],
+      url = 'visa/' + session.url_hash,
+      title = document.title + ' | Пользователь ' + session.email;
 
     $$userSessionsStore.add(session, session.id);
     $$personsStore.clearAll();
@@ -250,8 +306,23 @@ var // @vars
 
     $$('tabbar').setValue('Step2');
     $$('Step2').enable();
+    window.history.pushState({ webix: true }, title, url);
 
     initStep3(session, persons);
+
+    webix.alert({
+      title: _('msg.session_created_title'),
+      ok: _('ok'),
+      text: 'На адрес ' +
+        session.email +
+        ', выслано письмо со ссылкой, чтобы вы в любой момент могли вернуться к заполнению данных анкеты.<br>' +
+        'Также, вернуться к заполнению можно, перейдя по ссылке на эту страницу.'
+    });
+    // webix.alert({
+    //   title: _('msg.session_created_title'),
+    //   ok: _('msg.session_created_ok'),
+    //   text: _('msg.session_created_body')
+    // });
   },
 
   /**
@@ -259,7 +330,9 @@ var // @vars
    */
   loadSession = function(id) {
     var session = $$userSessionsStore.getItem(id),
-      persons = session.persons;
+      persons = session.persons,
+      url = 'visa/' + session.url_hash,
+      title = document.title + ' | Пользователь ' + session.email;
 
     // Кешируем id активной сессии
     $$userSessionsStore.setCursor(id);
@@ -272,6 +345,7 @@ var // @vars
 
     $$('tabbar').setValue('Step2');
     $$('Step2').enable();
+    window.history.pushState({ webix: true }, title, url);
 
     initStep3(session, persons);
   },
@@ -281,7 +355,7 @@ var // @vars
    * Показывает всплывающее окно со списком сессий
    */
   show_modal = function(data) {
-    if (typeof data == 'string') data = JSON.parse(data);
+    if(typeof data == 'string') data = JSON.parse(data);
     var sessions = data.results,
       email = sessions[0].email,
       persons = [],
@@ -297,7 +371,7 @@ var // @vars
       move: true,
       resize: true,
       position: "center",
-      height: 600,
+      height: 300,
       head: {
         view: "toolbar",
         cols: [
@@ -314,8 +388,8 @@ var // @vars
           scheme: {
             $init: function(obj) {
               obj.data = obj.persons;
-              for (var key in obj.data) {
-                if (obj.data.hasOwnProperty(key)) {
+              for(var key in obj.data) {
+                if(obj.data.hasOwnProperty(key)) {
                   obj.data[key].id = obj.id + '.' + obj.data[key].id;
                   obj.data[key].session = obj.id;
                 }
@@ -332,30 +406,35 @@ var // @vars
               id: "edit",
               header: _('actions'),
               template: function(obj, common) {
-                return '<span class="editBtn" title="' + _('return_filling') + '">' + common.editIcon(obj, common) + '</span><span class="infoBtn" title="' + _('show_persons') + '"></span>';
+                return '<span class="editBtn" title="' + _('return_filling') + '">Отправить ссылку</span><span class="infoBtn" title="' + _('show_persons') + '"></span>';
               }
             }
           ],
           data: $$userSessionsStore,
           onClick: {
-            editBtn: function(e, id, trg) {
+            'webix_cell': function(e, id, trg) {
+              console.log(e, id, trg);
+            }
+          },
+          on: {
+            'onItemClick': function(id) {
               webix.confirm({
-                title: _('load_sess'),
+                title: _('email_repeat'),
                 ok: _('ok'),
                 cancel: _('cancel'),
-                text: _('load_confirm'),
-                callback: function(yes) {
-                  if (yes) {
-                    mainWrapper.showProgress({
-                      type: "icon",
-                      delay: 3000
-                    });
-                    loadSession(id);
+                text: _('email_repeat_confirm'),
+                callback: function(success) {
+                  if(success) {
+                    var data = { sessionId: id.row, email: email };
+                    mainWrapper.showProgress({ type: "icon", delay: 3000 });
+                    webix.ajax().post(getAjaxUrl('session', 'sendmail'), data, ajaxCallback);
+                    return;
                   }
+                  //@TODO Error handler. Обработчик ошибок.
                 }
               });
             }
-          },
+          }
         }, {
           cols: [{}, {
             view: "button",
@@ -373,6 +452,94 @@ var // @vars
     }).show();
   },
 
+  // show_password_form = function(data) {
+  //   if(typeof data == 'string') data = JSON.parse(data);
+
+  //   webix.ui({
+  //     view: "window",
+  //     id: "passwordFormWin",
+  //     move: true,
+  //     resize: true,
+  //     position: "center",
+  //     height: 200,
+  //     width: 300,
+  //     head: {
+  //       view: "toolbar",
+  //       cols: [
+  //         { view: "label", label: _('password_form_head'), gravity: 5 },
+  //         { view: "button", label: _('close'), align: "right", gravity: 1, click: "$$('passwordFormWin').close();" }
+  //       ]
+  //     },
+  //     body: {
+  //       width: 800,
+  //       rows: [
+  //         { view: "template", template: _('password_form_message') }, {
+  //           view: "button",
+  //           id: "emailRepeatButt",
+  //           type: "form",
+  //           label: _('email_repeat'),
+  //           click: function() {
+  //             data.results.action = 'session/sendmail';
+  //             webix.ajax().post(getAjaxUrl('session', 'sendmail'), data.results, ajaxCallback);
+  //           }
+  //         }, {
+  //           view: "form",
+  //           id: "passwordForm",
+  //           elements: [
+  //             { view: "text", type: "password", label: _('password') }, {
+  //               cols: [{}, {
+  //                 view: "button",
+  //                 gravity: 2,
+  //                 value: _('ok'),
+  //                 type: "form",
+  //                 click: "$$('passwordForm').callEvent('onSubmit');"
+  //               }, {}]
+  //             }
+  //           ],
+  //           elementsConfig: {
+  //             borderless: true
+  //           },
+  //           on: {
+  //             'onSubmit': function(view, e) {
+  //               data.results.action = 'session/create';
+  //               data.results.password = this.getChildViews()[0].getValue() || 'empty_pass';
+  //               mainWrapper.showProgress({ type: "icon", delay: 3000 });
+  //               webix.ajax().post(getAjaxUrl('session', 'create'), data.results, ajaxCallback);
+  //             }
+  //           }
+  //         }
+  //       ]
+  //     }
+  //   }).show();
+  // },
+
+  email_ok = function(data) {
+    var b = $$('emailRepeatButt');
+    if(b !== undefined) {
+      b.destructor();
+    }
+    webix.message({
+      text: _('email_ok'),
+      expire: 5000
+    });
+  },
+
+  email_fail = function(data) {
+    webix.message({
+      type: "error",
+      text: _('email_fail'),
+      expire: 5000
+    });
+  },
+
+  // wrong_password = function(data) {
+  //   webix.message({
+  //     type: "error",
+  //     text: _('email_fail'),
+  //     expire: 5000
+  //   });
+  // },
+
   /**
    * Generate URL helper
    * @param  {[type]} model  [description]
@@ -389,8 +556,8 @@ var // @vars
    * @return {[type]}      [description]
    */
   ajaxCallback = function(resp) {
-    data = JSON.parse(resp);
-    if (data.success) {
+    var data = JSON.parse(resp);
+    if(data.success) {
       mainWrapper.hideProgress();
       return window[data.message](data);
     }
@@ -413,7 +580,7 @@ var // @vars
   getPersonsLimit = function() {
     var mp = Number(visax.max_persons),
       optArr = [];
-    for (var i = 1; i <= mp; i++) {
+    for(var i = 1; i <= mp; i++) {
       optArr.push({ id: i, value: i });
     }
     return optArr;
@@ -457,14 +624,14 @@ var // @vars
 
     $uploadLastVisaAPI.attachEvent("onBeforeFileAdd", function(item) {
       var type = item.type.toLowerCase();
-      if (type != "jpg" && type != "jpeg" && type != "png" && type != "gif") {
+      if(type != "jpg" && type != "jpeg" && type != "png" && type != "gif") {
         webix.message("Only PNG, JPG, JPEG and GIF images are supported");
         return false;
       }
     });
 
     var onUpCompl = $uploadLastVisaAPI.attachEvent("onUploadComplete", function(response) {
-      if (response.success) {
+      if(response.success) {
         var $view = $$(name + '_view');
         $$(name).setValue(response.object.url);
         updatePerson();
@@ -477,10 +644,10 @@ var // @vars
   },
 
   removeDropZoneArea = function(name) {
-    if (!$$('dropZoneArea_' + name)) return;
+    if(!$$('dropZoneArea_' + name)) return;
     webix.html.removeCss($$('dropZoneArea_' + name).getNode(), "op1");
     webix.delay(function() {
-      if ($$('dropZoneArea_' + name) !== undefined) {
+      if($$('dropZoneArea_' + name) !== undefined) {
         $$('dropZoneArea_' + name).destructor();
       }
       webix.detachEvent(winResizeEv);
@@ -519,14 +686,14 @@ var // @vars
 
     $uploadPassportAPI.attachEvent("onBeforeFileAdd", function(item) {
       var type = item.type.toLowerCase();
-      if (type != "jpg" && type != "jpeg" && type != "png" && type != "gif") {
+      if(type != "jpg" && type != "jpeg" && type != "png" && type != "gif") {
         webix.message("Only PNG, JPG, JPEG and GIF images are supported");
         return false;
       }
     });
 
     var onUpCompl = $uploadPassportAPI.attachEvent("onUploadComplete", function(response) {
-      if (response.success) {
+      if(response.success) {
         var $view = $$(name + '_view');
         $$(name).setValue(response.object.url);
         updatePerson();
@@ -547,27 +714,27 @@ var // @vars
   getPersonAgeById = function(id) {
     var person = $$personsStore.getItem(id) || {},
       b_d = person.birth_date || visax.default_birth_date;
-    return ((new Date()) - b_d) / 1000 / 60 / 60 / 24 / 365;
+    return((new Date()) - b_d) / 1000 / 60 / 60 / 24 / 365;
   },
 
   calcPersonCostById = function(personId) {
     personId = personId || $$('visaForm').getValues().id;
 
     var person = $$personsStore.getItem(personId),
-      cost = 540,
+      cost = 540 + 500,
       age = getPersonAgeById(personId);
 
     // Age rules
-    if (age <= 17) cost += 500;
-    if (age > 17 && age <= 64) cost += 450;
-    if (age > 64 && age <= 69) cost += 900;
-    if (age > 69 && age <= 74) cost += 1350;
-    if (age > 74 && age <= 79) cost += 1800;
-    if (age > 79 && age <= 84) cost += 2250;
-    if (age > 84) cost += 3150;
+    // if(age <= 17) cost += 500;
+    if(age > 17 && age <= 64) cost -= 50;
+    if(age > 64 && age <= 69) cost += 400;
+    if(age > 69 && age <= 74) cost += 850;
+    if(age > 74 && age <= 79) cost += 1300;
+    if(age > 79 && age <= 84) cost += 1750;
+    if(age > 84) cost += 2650;
 
     // Region rules
-    if (!!person && person.registration_region != 1) cost += 50;
+    if(!!person && person.registration_region != 1) cost += 50;
 
     return cost;
   },
@@ -590,6 +757,12 @@ var // @vars
     $$('priceBlock').define('data', { cost: totalCost });
   };
 
+/*********************************
+ *********************************
+ * VARS END
+ *********************************
+ *********************************/
+
 webix.type(webix.ui.list, {
   name: "perslist",
   icon: "fa-times",
@@ -599,7 +772,7 @@ webix.type(webix.ui.list, {
   templateEnd: webix.template('</div>{common.removeButton()}</div>'),
   template: function(obj) {
     var idx = $$('visaList').getIndexById(obj.id);
-    if (obj.sirname !== undefined && obj.sirname !== null && obj.sirname.length > 1) {
+    if(obj.sirname !== undefined && obj.sirname !== null && obj.sirname.length > 1) {
       return "<div class='title'>" + _C(obj.sirname) + _C(obj.firstname, true) + _C(obj.patronymic, true) + "</div><div class='cost'>" + webix.i18n.priceFormat(obj.price) + "</div>";
     }
     return "<div class='small'>Заявитель №" + (idx + 1) + "</div><div class='cost'>" + webix.i18n.priceFormat(obj.price) + "</div>";
@@ -624,12 +797,12 @@ webix.type(webix.ui.list, {
   name: "multilist",
   classname: function(obj, common, marks) {
     var css = "webix_list_item";
-    if (obj.$css) {
-      if (typeof obj.$css == "object")
+    if(obj.$css) {
+      if(typeof obj.$css == "object")
         obj.$css = webix.html.createCss(obj.$css);
       css += " " + obj.$css;
     }
-    if (marks && marks.$css)
+    if(marks && marks.$css)
       css += " " + marks.$css;
     return css;
   },
@@ -674,7 +847,7 @@ webix.protoUI({
     type: 'multilist'
   },
   label_setter: function(label) {
-    if (label !== undefined && label !== '' && label) {
+    if(label !== undefined && label !== '' && label) {
       var rootNode = this.getNode(),
         conf = this.config,
         addButton = webix.html.create('DIV', {
@@ -712,17 +885,18 @@ webix.protoUI({
       });
   },
   updatePrevSirnamesList: function(id) {
-    if ($$personsStore.getItem(id) === undefined) return;
+    if($$personsStore.getItem(id) === undefined) return;
 
     var $prevSurList = $$('prevSurList'),
       str = $$('visaForm').getDirtyValues().prev_surnames || '';
 
-    if (!str || str === '') {
+    if(!str || str === '') {
       $$('prevSurList').clearAll();
       return;
     }
 
-    var arr = str.split(','), result = [];
+    var arr = str.split(','),
+      result = [];
     arr.forEach(function(surname, idx) {
       result.push({ id: idx + 1, value: _C(surname).trim() });
     });
@@ -758,7 +932,7 @@ webix.protoUI({
     on: {
       "onAfterRender": function(data) {
         // console.log(data, this);
-        if (!VanillaMask) return;
+        if(!VanillaMask) return;
         var id = this.getInputNode().id,
           _this = this;
         this.validator = this.validator ||
@@ -777,12 +951,9 @@ webix.protoUI({
 }, webix.ui.text);
 
 /*************************
+ *************************
  * On DOM ready
  * @return {void}
- *************************
- *************************
- *************************
- *************************
  *************************
  *************************/
 webix.ready(function() {
@@ -847,9 +1018,9 @@ webix.ready(function() {
       //turning strings into objects on loading
       $init: function(obj) {
         // formatting dates. turning strings into objects on loading.
-        if (obj.editedon !== undefined && obj.editedon !== null)
+        if(obj.editedon !== undefined && obj.editedon !== null)
           obj.editedon = webix.i18n.parseFormatDate(obj.editedon);
-        if (obj.createdon !== undefined && obj.createdon !== null)
+        if(obj.createdon !== undefined && obj.createdon !== null)
           obj.createdon = webix.i18n.parseFormatDate(obj.createdon);
         // get lang keys
         obj._status = obj.status;
@@ -858,9 +1029,9 @@ webix.ready(function() {
       //turing objects back to strings on saving
       $save: function(obj) {
         // return dates
-        if (obj.editedon !== undefined && obj.editedon !== null)
+        if(obj.editedon !== undefined && obj.editedon !== null)
           obj.editedon = webix.i18n.parseFormatStr(obj.editedon);
-        if (obj.createdon !== undefined && obj.createdon !== null)
+        if(obj.createdon !== undefined && obj.createdon !== null)
           obj.createdon = webix.i18n.parseFormatStr(obj.createdon);
       }
     }
@@ -876,14 +1047,14 @@ webix.ready(function() {
       $init: function(obj) {
         obj.birth_date = obj.birth_date || visax.default_birth_date;
 
-        if (obj.birth_date !== undefined && obj.birth_date !== null)
+        if(obj.birth_date !== undefined && obj.birth_date !== null)
           obj.birth_date = webix.i18n.parseFormatDate(obj.birth_date);
 
         obj.price = calcPersonCostById(obj.id);
         updateAllCosts();
       },
       $save: function(obj) {
-        if (obj.birth_date !== undefined && obj.birth_date !== null)
+        if(obj.birth_date !== undefined && obj.birth_date !== null)
           obj.birth_date = webix.i18n.parseFormatStr(obj.birth_date);
       },
       $update: function(obj) {
@@ -1003,7 +1174,7 @@ webix.ready(function() {
             placeholder: _('email_pls'),
             validate: "isEmail",
             gravity: 1,
-            value: "ya.denfromp@ya.ru"
+            value: "denfromp@gmail.com"
           }, {
             view: "template",
             gravity: 2,
@@ -1029,7 +1200,7 @@ webix.ready(function() {
             css: "submit-butt",
             click: function() {
               var form = this.getFormView();
-              if (!form.validate()) {
+              if(!form.validate()) {
                 return webix.message({
                   type: "error",
                   text: _('invalid_form'),
@@ -1128,7 +1299,7 @@ webix.ready(function() {
               view: "datepicker",
               id: "birthDatepicker",
               name: "birth_date",
-              timepicker: true,
+              timepicker: false,
               minTime: "8:00",
               maxTime: "18:30",
               icons: true,
@@ -1139,20 +1310,28 @@ webix.ready(function() {
                 "onChange": function(newv, oldv) {
                   var form = this.getFormView(),
                     birth_date = Date.parse(form.getValues().birth_date),
-                    now = Date.now();
-                  if ((now - birth_date) / 1000 < (18 * 60 * 60 * 24 * 365)) {
-                    $$('parentsGroup').show();
+                    now = Date.now(),
+                    $parentsGroup = $$('parentsGroup'),
+                    $upload = $$('uploadPassportAPI');
+                  if((now - birth_date) / 1000 < (18 * 60 * 60 * 24 * 365)) {
+                    $parentsGroup.show();
+                    if ($upload.$view.getElementsByTagName('button').length > 0) {
+                      $upload.$view.getElementsByTagName('button')[0].innerText = "Загрузить скан свидетельства о рождении";
+                    }
                   } else {
-                    $$('parentsGroup').hide();
+                    $parentsGroup.hide();
+                    if ($upload.$view.getElementsByTagName('button').length > 0) {
+                      $upload.$view.getElementsByTagName('button')[0].innerText = "Загрузить скан паспорта";
+                    }
                   }
                   setTimeout(updatePerson, 0);
                 },
-                "onFocus": function(curr) {
-                  var popupNode = $$(curr.config.suggest).$view,
-                    levelUp = popupNode.getElementsByClassName('webix_cal_month_name')[0];
-
-                  levelUp.click();
-                  levelUp.click();
+                "onAfterRender": function() {
+                  this.getPopup().attachEvent("onShow", function() {
+                    var upButton = this.$view.getElementsByClassName('webix_cal_month_name')[0];
+                    upButton.click();
+                    upButton.click();
+                  });
                 }
               }
             }, {
@@ -1215,6 +1394,7 @@ webix.ready(function() {
             cols: [{
               view: "richselect",
               name: "marital_status",
+              gravity: 2,
               required: true,
               label: _('marital_status'),
               placeholder: _('marital_status_pls'),
@@ -1222,7 +1402,9 @@ webix.ready(function() {
               value: 0,
               options: [
                 { id: 0, value: _('no_married') },
-                { id: 1, value: _('married') }
+                { id: 1, value: _('married') },
+                { id: 2, value: "Разведен / Разведена"},
+                { id: 3, value: "Вдовец / Вдова"}
               ],
               on: {
                 "onChange": function() {
@@ -1233,6 +1415,7 @@ webix.ready(function() {
               view: "richselect",
               id: "regionsList",
               required: true,
+              gravity: 2,
               label: _('registration_region'),
               placeholder: _('registration_region_pls'),
               name: "registration_region",
@@ -1256,24 +1439,56 @@ webix.ready(function() {
               height: 68,
               view: "datepicker",
               name: "desired_time",
+              gravity: 1,
               required: true,
-              label: _('desired_time'),
-              placeholder: _('desired_time_pls'),
-              timepicker: true,
+              label: _('desired_date'),
+              placeholder: _('desired_date_pls'),
+              timepicker: false,
               on: {
                 "onChange": function() {
                   setTimeout(updatePerson, 0);
                 }
               }
+            }, {
+              height: 68,
+              view: "richselect",
+              required: true,
+              label: _('desired_time'),
+              placeholder: _('desired_time_pls'),
+              borderless: true,
+              options: [
+                { id: "10:00", value: "10:00" },
+                { id: "10:30", value: "10:30" },
+                { id: "11:00", value: "11:00" },
+                { id: "11:30", value: "11:30" },
+                { id: "12:00", value: "12:00" },
+                { id: "12:30", value: "12:30" },
+                { id: "13:00", value: "13:00" },
+                { id: "13:30", value: "13:30" },
+                { id: "14:00", value: "14:00" },
+                { id: "14:30", value: "14:30" },
+                { id: "15:00", value: "15:00" },
+                { id: "15:30", value: "15:30" },
+                { id: "16:00", value: "16:00" },
+                { id: "16:30", value: "16:30" },
+                { id: "17:00", value: "17:00" },
+                { id: "17:30", value: "17:30" },
+              ]
             }]
           }, {
             height: 68,
             cols: [{
-              view: "text",
+              view: "richselect",
               name: "trip_target",
               required: true,
               label: _('trip_target'),
-              placeholder: _('trip_target_pls')
+              placeholder: _('trip_target_pls'),
+              borderless: true,
+              options: [
+                { id: "tourism", value: "Туризм" },
+                { id: "business", value: "Бизнес" },
+                { id: "friends", value: "Посещение родственников/друзей" },
+              ]
             }, {
               view: "richselect",
               name: "visa_type",
@@ -1305,7 +1520,7 @@ webix.ready(function() {
               ],
               on: {
                 "onChange": function() {
-                  if (!this.data.value || this.data.value == 'not_work' || this.data.value == 'pension') {
+                  if(!this.data.value || this.data.value == 'not_work' || this.data.value == 'pension') {
                     $$('employment_group').hide();
                   } else {
                     $$('employment_group').show();
@@ -1401,11 +1616,11 @@ webix.ready(function() {
                 on: {
                   "onChange": function(yes, no) {
                     var val = $$('last_visa_scan').getValue();
-                    if (!val) {
-                      if (yes && !no) {
+                    if(!val) {
+                      if(yes && !no) {
                         addLastVisaDropZoneArea('last_visa_scan', 'sideBarWrap');
                       }
-                      if (!yes && no) {
+                      if(!yes && no) {
                         removeDropZoneArea('last_visa_scan');
                       }
                     }
@@ -1521,17 +1736,36 @@ webix.ready(function() {
         }]
       }, { // STEP 3
         id: "Step3",
+        paddingY: 20,
         cols: [{
-          id: "vertScroll",
-          view: "scrollview",
-          body: {
-            rows: [{
+          id: "propsAccord",
+          view: "accordion",
+          paddingX: 18,
+          borderless: true,
+          multi: true,
+          rows: [{
+            view: "template",
+            template: "<div class='header-wrap step3'>" +
+              "<h2>Шаг 3 - проверка и оплата</h2>" +
+              "</div>",
+            height: 94,
+            borderless: true
+          }, {
+            borderless: true,
+            header: _('session'),
+            headerHeight: 41,
+            headerAlt: _('session') + " (Открыть)",
+            headerAltHeight: 41,
+            view: "accordionitem",
+            collapsed: false,
+            body: {
               view: "property",
               id: "sessionProps",
+              height: 40 * 7,
               editable: false,
               nameWidth: 300,
               elements: [
-                { label: _('session'), type: "label" },
+                { type: "text", id: "id", hidden: true },
                 { label: _('country'), type: "text", id: "country_name" },
                 { label: _('email'), type: "text", id: "email" },
                 { label: _('phone'), type: "text", id: "phone" },
@@ -1540,8 +1774,8 @@ webix.ready(function() {
                 { label: _('persons_count'), type: "text", id: "persons_count" },
                 { label: _('url_hash'), type: "text", id: "url_hash" },
               ]
-            }]
-          }
+            }
+          }]
         }]
       }]
     }]
@@ -1549,16 +1783,9 @@ webix.ready(function() {
 
   webix.extend(mainWrapper, webix.ProgressBar);
 
-  if (visax.sessions.length > 0) {
+  if(visax.sessions.length > 0) {
     $$userSessionsStore.add(visax.sessions[0]);
     loadSession(visax.sessions[0].id);
   }
 
 });
-
-String.prototype.visualLength = function() {
-  var ruler = document.getElementById("ruler");
-  ruler.innerHTML = this;
-  return ruler.offsetWidth + 30;
-};
-
